@@ -20,13 +20,9 @@ namespace DemoSignalSystem
         {
             InitializeComponent();
             initializeLights();
-            button1.Text = "CLICK ME!";
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
            
         }
+
 
         private void initializeLights()
         {
