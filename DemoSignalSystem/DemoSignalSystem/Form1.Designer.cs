@@ -30,14 +30,25 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabLightPattern = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabLightStatus = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabSimulation = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.IntersectionBD = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabLightPattern.SuspendLayout();
             this.tabControl2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.IntersectionBD.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -60,16 +71,7 @@
             this.tabLightPattern.TabIndex = 0;
             this.tabLightPattern.Text = "Traffic Light Map";
             this.tabLightPattern.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1434, 604);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabLightPattern.Click += new System.EventHandler(this.tabLightPattern_Click);
             // 
             // tabControl2
             // 
@@ -94,6 +96,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.tabControl3);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -112,6 +115,104 @@
             this.tabSimulation.Text = "Simulation";
             this.tabSimulation.UseVisualStyleBackColor = true;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1434, 604);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Controls.Add(this.IntersectionBD);
+            this.tabControl3.Controls.Add(this.tabPage3);
+            this.tabControl3.Location = new System.Drawing.Point(-4, 3);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(356, 575);
+            this.tabControl3.TabIndex = 0;
+            // 
+            // IntersectionBD
+            // 
+            this.IntersectionBD.AutoScroll = true;
+            this.IntersectionBD.Controls.Add(this.tableLayoutPanel1);
+            this.IntersectionBD.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.IntersectionBD.Location = new System.Drawing.Point(4, 22);
+            this.IntersectionBD.Name = "IntersectionBD";
+            this.IntersectionBD.Padding = new System.Windows.Forms.Padding(3);
+            this.IntersectionBD.Size = new System.Drawing.Size(348, 549);
+            this.IntersectionBD.TabIndex = 0;
+            this.IntersectionBD.Text = "BD";
+            this.IntersectionBD.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(348, 549);
+            this.tabPage3.TabIndex = 1;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.73895F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.26104F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(346, 533);
+            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(238, 69);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "North and southbound traffic flowing on D. No right turns operating except for cy" +
+    "cles.  No left turns operating.  Pedestrians allowed to cross on B";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox2.Location = new System.Drawing.Point(250, 27);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(32, 20);
+            this.textBox2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(291, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Seconds";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,6 +224,11 @@
             this.tabControl1.ResumeLayout(false);
             this.tabLightPattern.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.IntersectionBD.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -136,6 +242,13 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabSimulation;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage IntersectionBD;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

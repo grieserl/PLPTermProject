@@ -16,7 +16,13 @@ namespace DemoSignalSystem
         bool right;
         bool left;
 
-        public TrafficLight(bool hasForward, bool forward, bool hasRight, bool right, bool hasLeft, bool left)
+        string type; //car, train, bike;
+
+        List<Vehicle>  vehicleQueue = new List<Vehicle>();
+
+        
+
+        public TrafficLight(bool hasForward, bool forward, bool hasRight, bool right, bool hasLeft, bool left, string type)
         {
             this.hasForward = hasForward;
             this.forward    = forward;
@@ -24,6 +30,7 @@ namespace DemoSignalSystem
             this.right      = right;
             this.hasLeft    = hasLeft;
             this.left       = left;
+            this.type       = type;
         }
 
         public void forwardOn()
@@ -56,6 +63,13 @@ namespace DemoSignalSystem
            if (this.hasLeft) this.left = false;
         }
 
+        public void greenPop(string direction)
+        {
+            for (int i = 0; i < this.vehicleQueue.Count(); i++)
+            {
+                if (vehicleQueue[i].direction == direction) vehicleQueue.RemoveAt(i);
+            }
+        }
 
     }
 }

@@ -26,7 +26,7 @@ namespace DemoSignalSystem
 
         private void initializeLights()
         {
-            TrafficLight trafA = new TrafficLight(true, true, true, false, true, false);
+            TrafficLight trafA = new TrafficLight(true, true, true, false, true, false, "car");
             
             trafA.rightOn();
             trafA.forwardOff();
@@ -35,6 +35,26 @@ namespace DemoSignalSystem
         private void label1_Click(object sender, EventArgs e)
         {
             //test
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabLightPattern_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
