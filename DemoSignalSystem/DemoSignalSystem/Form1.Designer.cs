@@ -33,15 +33,17 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabLightStatus = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabSimulation = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.IntersectionBD = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabSimulation = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.timeAccelLabel = new System.Windows.Forms.Label();
+            this.timeAccelTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabLightPattern.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -49,6 +51,7 @@
             this.tabControl3.SuspendLayout();
             this.IntersectionBD.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tabSimulation.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -105,26 +108,6 @@
             this.tabPage4.Text = "Pattern";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tabSimulation
-            // 
-            this.tabSimulation.Location = new System.Drawing.Point(4, 22);
-            this.tabSimulation.Name = "tabSimulation";
-            this.tabSimulation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSimulation.Size = new System.Drawing.Size(352, 578);
-            this.tabSimulation.TabIndex = 2;
-            this.tabSimulation.Text = "Simulation";
-            this.tabSimulation.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1434, 604);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // tabControl3
             // 
             this.tabControl3.Controls.Add(this.IntersectionBD);
@@ -148,23 +131,13 @@
             this.IntersectionBD.Text = "BD";
             this.IntersectionBD.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(348, 549);
-            this.tabPage3.TabIndex = 1;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.73895F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.26104F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
@@ -197,7 +170,7 @@
             // textBox2
             // 
             this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox2.Location = new System.Drawing.Point(250, 27);
+            this.textBox2.Location = new System.Drawing.Point(249, 27);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(32, 20);
             this.textBox2.TabIndex = 1;
@@ -206,12 +179,62 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(291, 31);
+            this.label1.Location = new System.Drawing.Point(290, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Seconds";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(348, 549);
+            this.tabPage3.TabIndex = 1;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabSimulation
+            // 
+            this.tabSimulation.Controls.Add(this.timeAccelTextBox);
+            this.tabSimulation.Controls.Add(this.timeAccelLabel);
+            this.tabSimulation.Location = new System.Drawing.Point(4, 22);
+            this.tabSimulation.Name = "tabSimulation";
+            this.tabSimulation.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSimulation.Size = new System.Drawing.Size(352, 578);
+            this.tabSimulation.TabIndex = 2;
+            this.tabSimulation.Text = "Simulation";
+            this.tabSimulation.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1434, 604);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // timeAccelLabel
+            // 
+            this.timeAccelLabel.AutoSize = true;
+            this.timeAccelLabel.Location = new System.Drawing.Point(6, 3);
+            this.timeAccelLabel.Name = "timeAccelLabel";
+            this.timeAccelLabel.Size = new System.Drawing.Size(92, 13);
+            this.timeAccelLabel.TabIndex = 0;
+            this.timeAccelLabel.Text = "Time Acceleration";
+            // 
+            // timeAccelTextBox
+            // 
+            this.timeAccelTextBox.Location = new System.Drawing.Point(104, 3);
+            this.timeAccelTextBox.MaxLength = 8;
+            this.timeAccelTextBox.Name = "timeAccelTextBox";
+            this.timeAccelTextBox.Size = new System.Drawing.Size(78, 20);
+            this.timeAccelTextBox.TabIndex = 1;
+            this.timeAccelTextBox.Text = "1";
             // 
             // Form1
             // 
@@ -229,6 +252,8 @@
             this.IntersectionBD.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tabSimulation.ResumeLayout(false);
+            this.tabSimulation.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -249,6 +274,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox timeAccelTextBox;
+        private System.Windows.Forms.Label timeAccelLabel;
     }
 }
 

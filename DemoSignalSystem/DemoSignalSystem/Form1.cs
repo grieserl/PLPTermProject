@@ -26,10 +26,20 @@ namespace DemoSignalSystem
 
         private void initializeLights()
         {
-            TrafficLight trafA = new TrafficLight(true, true, true, false, true, false, "car");
-            
-            trafA.rightOn();
-            trafA.forwardOff();
+            //Lights are set up as TrafficLight(bool hasForward, bool forward, bool hasRight, bool right, bool hasLeft, bool left, bool hasCycle, bool cycle, string type)
+
+            //Initialize a and d intersection lights
+            TrafficLight dLightSouthbound = new TrafficLight(true, false, true, false, true, false, true, false, "car");
+            TrafficLight aLightEastbound = new TrafficLight(true, true, true, false, true, false, true, true, "car");
+            TrafficLight aLightWestbound = new TrafficLight(true, true, true, false, true, false, true, true, "car");
+
+            //Initialize b and c intersection lights
+            TrafficLight bLightNorthbound = new TrafficLight(true, false, true, false, true, false, true, false, "car");
+            TrafficLight cLightEastbound = new TrafficLight(true, true, true, false, true, false, true, true, "car");
+            TrafficLight cLightWestbound = new TrafficLight(true, true, true, false, true, false, true, true, "car");
+
+            //trafA.rightOn();
+            //trafA.forwardOff();
         }
 
         private void label1_Click(object sender, EventArgs e)
