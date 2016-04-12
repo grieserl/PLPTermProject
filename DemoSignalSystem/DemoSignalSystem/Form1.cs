@@ -71,7 +71,7 @@ namespace DemoSignalSystem
             {
                 //insert code to update second section of timer with numSeconds%60
             }
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -95,6 +95,49 @@ namespace DemoSignalSystem
         }
 
         private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button3.BackColor = Color.Red;
+            
+            
+
+        }
+
+        private void F_Click(object sender, EventArgs e)
+        {
+            button3.BackColor = Color.Green;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }
