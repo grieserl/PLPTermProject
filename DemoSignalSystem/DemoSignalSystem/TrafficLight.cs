@@ -22,7 +22,7 @@ namespace DemoSignalSystem
 
         
 
-        public TrafficLight(bool hasForward, bool forward, bool hasRight, bool right, bool hasLeft, bool left, bool hasCycle, bool cycle, string type)
+        public TrafficLight(bool hasForward, bool forward, bool hasRight, bool right, bool hasLeft, bool left, string type)
         {
             this.hasForward = hasForward;
             this.forward    = forward;

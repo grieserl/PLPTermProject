@@ -16,62 +16,90 @@ namespace DemoSignalSystem
 {
     public partial class Form1 : Form
     {
-        int numSeconds = 0;
+        //variable Declaration
+        bool isRunning = false;
+        double numSeconds = 0.0;
+        double multiplier = 1;
+        int hours, minutes, seconds = 0;
+
+        //Lights are set up as TrafficLight(bool hasForward, bool forward, bool hasRight, bool right, bool hasLeft, bool left, string type)
+
+        //Initialize a and d intersection lights starting at B5 of the light pattern description
+        TrafficLight dLightSouthbound = new TrafficLight(true, false, true, false, true, false, "car");
+        TrafficLight aLightEastbound = new TrafficLight(true, false, true, false, false, false, "car");
+        TrafficLight aLightWestbound = new TrafficLight(true, false, false, false, true, false, "car");
+
+        //Initialize b and c intersection lights starting at B5 of the light pattern description
+        TrafficLight bLightNorthbound = new TrafficLight(true, false, true, false, true, false, "car");
+        TrafficLight cLightEastbound = new TrafficLight(true, false, false, false, true, false, "car");
+        TrafficLight cLightWestbound = new TrafficLight(true, false, true, false, false, false, "car");
+
+        System.Timers.Timer globalTimer = new System.Timers.Timer();
+
         public Form1()
         {
             InitializeComponent();
-            initializeLights();
             initializeTimer();
         }
 
-        private void initializeTimer()
+        public void initializeTimer()
         {
-            System.Timers.Timer globalTimer = new System.Timers.Timer();
-
             globalTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
 
-            //Set time interval to 1000ms or 1 second
+            //Set time interval event trigger to 1000ms or 1 second
             globalTimer.Interval = 1000;
-
-            globalTimer.Enabled = true;
+            globalTimer.Enabled = false;
         }
-        //test
-       
 
-        private void initializeLights()
+        public void startTimer()
         {
-            //Lights are set up as TrafficLight(bool hasForward, bool forward, bool hasRight, bool right, bool hasLeft, bool left, bool hasCycle, bool cycle, string type)
-
-            //Initialize a and d intersection lights starting at B5 of the light pattern description
-            TrafficLight dLightSouthbound = new TrafficLight(true, false, true, false, true, false, true, false, "car");
-            TrafficLight aLightEastbound = new TrafficLight(true, true, true, false, true, false, true, true, "car");
-            TrafficLight aLightWestbound = new TrafficLight(true, true, true, false, true, false, true, true, "car");
-
-            //Initialize b and c intersection lights starting at B5 of the light pattern description
-            TrafficLight bLightNorthbound = new TrafficLight(true, false, true, false, true, false, true, false, "car");
-            TrafficLight cLightEastbound = new TrafficLight(true, true, true, false, true, false, true, true, "car");
-            TrafficLight cLightWestbound = new TrafficLight(true, true, true, false, true, false, true, true, "car");
-
-            //trafA.rightOn();
-            //trafA.forwardOff();
+            numSeconds = 0.0;
+            globalTimer.Start();
+        }
+        public void stopTimer()
+        {
+            globalTimer.Stop();
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             numSeconds += 1;
-            if (3600%numSeconds > 0)
+            if (numSeconds >= 3600.0)
             {
-                //insert code to update hour section of timer with 3600%numSeconds
+                hours = Convert.ToInt32(Math.Floor(numSeconds / 3600.0));
+                SetControlText(hoursTextBox2, hours.ToString());
+                SetControlText(hoursTextBox, hours.ToString());
             }
-            if (60%numSeconds > 0)
+            if (numSeconds >= 60.0)
             {
-                //insert code to update minute section of timer with 60%numSeconds
+                minutes = Convert.ToInt32(Math.Floor((numSeconds / 60.0) % 60));
+                SetControlText(minutesTextBox2, minutes.ToString());
+                SetControlText(minutesTextBox, minutes.ToString());
             }
-            if (numSeconds%60 < 60)
+            seconds = Convert.ToInt32(Math.Floor(numSeconds%60));
+
+            SetControlText(secondsTextBox2, seconds.ToString());
+            SetControlText(secondsTextBox, seconds.ToString());
+        }
+
+        public void SetControlText(Control control, string s)
+        {
+            try
             {
-                //insert code to update second section of timer with numSeconds%60
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new Action<Control, string>(SetControlText), new object[] { control, s });
+                }
+                else
+                {
+                    control.Text = s;
+                }
             }
-            //throw new NotImplementedException();
+            catch (Exception ex)
+            {
+                
+            }
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -106,15 +134,13 @@ namespace DemoSignalSystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            button3.BackColor = Color.Red;
+            aLightButton2.BackColor = Color.Red;
             
-            
-
         }
 
         private void F_Click(object sender, EventArgs e)
         {
-            button3.BackColor = Color.Green;
+            aLightButton2.BackColor = Color.Green;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -140,6 +166,63 @@ namespace DemoSignalSystem
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lightCycleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timeMultiBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void startStopButton_Click(object sender, EventArgs e)
+        {
+            if (!isRunning)
+            {
+                isRunning = true;
+                startStopButton.Text = "Stop";
+                startStopButton2.Text = "Stop";
+                startTimer();
+            }
+            else
+            {
+                isRunning = false;
+                startStopButton.Text = "Start";
+                startStopButton2.Text = "Start";
+                stopTimer();
+            }
+
+        }
+
+        private void lightCycleComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timeMultiTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void startStopButton2_Click(object sender, EventArgs e)
+        {
+            if (!isRunning)
+            {
+                isRunning = true;
+                startStopButton.Text = "Stop";
+                startStopButton2.Text = "Stop";
+                startTimer();
+            }
+            else
+            {
+                isRunning = false;
+                startStopButton.Text = "Start";
+                startStopButton2.Text = "Start";
+                stopTimer();
+            }
         }
     }
 }
