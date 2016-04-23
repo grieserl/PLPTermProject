@@ -62,7 +62,6 @@
             this.minutesLabel2 = new System.Windows.Forms.Label();
             this.minutesTextBox2 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cLeftButton = new System.Windows.Forms.Button();
             this.bLeftButton = new System.Windows.Forms.Button();
             this.dLeftButton = new System.Windows.Forms.Button();
             this.bLightButton = new System.Windows.Forms.Button();
@@ -80,6 +79,9 @@
             this.timeMultiLabel2 = new System.Windows.Forms.Label();
             this.lightCycleLabel2 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.aLeftButton2 = new System.Windows.Forms.Button();
+            this.bLightButton2 = new System.Windows.Forms.Button();
+            this.bLeftButton2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabLightPattern.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -177,6 +179,9 @@
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel1.Controls.Add(this.bLeftButton2);
+            this.panel1.Controls.Add(this.bLightButton2);
+            this.panel1.Controls.Add(this.aLeftButton2);
             this.panel1.Controls.Add(this.cLeftButton2);
             this.panel1.Controls.Add(this.dLeftButton2);
             this.panel1.Controls.Add(this.dLightButton2);
@@ -221,7 +226,7 @@
             // aLightButton2
             // 
             this.aLightButton2.ForeColor = System.Drawing.Color.Black;
-            this.aLightButton2.Location = new System.Drawing.Point(376, 338);
+            this.aLightButton2.Location = new System.Drawing.Point(376, 348);
             this.aLightButton2.Name = "aLightButton2";
             this.aLightButton2.Size = new System.Drawing.Size(20, 20);
             this.aLightButton2.TabIndex = 2;
@@ -438,7 +443,6 @@
             // panel2
             // 
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
-            this.panel2.Controls.Add(this.cLeftButton);
             this.panel2.Controls.Add(this.bLeftButton);
             this.panel2.Controls.Add(this.dLeftButton);
             this.panel2.Controls.Add(this.bLightButton);
@@ -449,15 +453,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1071, 582);
             this.panel2.TabIndex = 2;
-            // 
-            // cLeftButton
-            // 
-            this.cLeftButton.Location = new System.Drawing.Point(683, 301);
-            this.cLeftButton.Name = "cLeftButton";
-            this.cLeftButton.Size = new System.Drawing.Size(20, 20);
-            this.cLeftButton.TabIndex = 9;
-            this.cLeftButton.Text = "↓";
-            this.cLeftButton.UseVisualStyleBackColor = true;
             // 
             // bLeftButton
             // 
@@ -502,7 +497,7 @@
             // 
             // aLightButton
             // 
-            this.aLightButton.Location = new System.Drawing.Point(291, 313);
+            this.aLightButton.Location = new System.Drawing.Point(292, 311);
             this.aLightButton.Name = "aLightButton";
             this.aLightButton.Size = new System.Drawing.Size(20, 20);
             this.aLightButton.TabIndex = 2;
@@ -642,6 +637,38 @@
             this.tabPage8.Text = "Simulation";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // aLeftButton2
+            // 
+            this.aLeftButton2.ForeColor = System.Drawing.Color.Black;
+            this.aLeftButton2.Location = new System.Drawing.Point(376, 320);
+            this.aLeftButton2.Name = "aLeftButton2";
+            this.aLeftButton2.Size = new System.Drawing.Size(20, 22);
+            this.aLeftButton2.TabIndex = 9;
+            this.aLeftButton2.Text = "↑";
+            this.aLeftButton2.UseVisualStyleBackColor = true;
+            // 
+            // bLightButton2
+            // 
+            this.bLightButton2.ForeColor = System.Drawing.Color.Black;
+            this.bLightButton2.Location = new System.Drawing.Point(578, 416);
+            this.bLightButton2.Name = "bLightButton2";
+            this.bLightButton2.Size = new System.Drawing.Size(20, 20);
+            this.bLightButton2.TabIndex = 10;
+            this.bLightButton2.Text = "B";
+            this.bLightButton2.UseMnemonic = false;
+            this.bLightButton2.UseVisualStyleBackColor = true;
+            // 
+            // bLeftButton2
+            // 
+            this.bLeftButton2.ForeColor = System.Drawing.Color.Black;
+            this.bLeftButton2.Location = new System.Drawing.Point(562, 416);
+            this.bLeftButton2.Name = "bLeftButton2";
+            this.bLeftButton2.Size = new System.Drawing.Size(20, 20);
+            this.bLeftButton2.TabIndex = 11;
+            this.bLeftButton2.Text = "←";
+            this.bLeftButton2.UseMnemonic = false;
+            this.bLeftButton2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -710,7 +737,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown;
         private System.Windows.Forms.Button tramButton;
         private System.Windows.Forms.Button cLeftButton2;
-        private System.Windows.Forms.Button cLeftButton;
         private System.Windows.Forms.TabControl tabControl4;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage5;
@@ -722,6 +748,9 @@
         private System.Windows.Forms.Label timeMultiLabel2;
         private System.Windows.Forms.Label lightCycleLabel2;
         private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Button bLeftButton2;
+        private System.Windows.Forms.Button bLightButton2;
+        private System.Windows.Forms.Button aLeftButton2;
     }
 }
 

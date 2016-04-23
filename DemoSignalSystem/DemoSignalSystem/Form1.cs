@@ -222,15 +222,17 @@ namespace DemoSignalSystem
                     selectTrafficLight = splitInstruction[i + 1];
                     selectDirection = splitInstruction[i + 2];
                     selectLightColor = splitInstruction[i + 3];
-                    
+
                     if (selectTrafficLight == "A" && selectDirection == "forward" && selectLightColor == "green")
                     {
                         aLight.forwardOn();
+
                     }
                     else if (selectTrafficLight == "A" && selectDirection == "right" && selectLightColor == "green")
                     {
                         aLight.rightOn();
                     }
+
                     else if (selectTrafficLight == "A" && selectDirection == "forward" && selectLightColor == "red")
                     {
                         aLight.forwardOff();
@@ -238,6 +240,7 @@ namespace DemoSignalSystem
                     else if (selectTrafficLight == "A" && selectDirection == "right" && selectLightColor == "red")
                     {
                         aLight.rightOff();
+
                     }
                     else if (selectTrafficLight == "B" && selectDirection == "forward" && selectLightColor == "green")
                     {
@@ -254,6 +257,7 @@ namespace DemoSignalSystem
                     else if (selectTrafficLight == "B" && selectDirection == "forward" && selectLightColor == "red")
                     {
                         bLight.forwardOff();
+
                     }
                     else if (selectTrafficLight == "B" && selectDirection == "right" && selectLightColor == "red")
                     {
@@ -290,6 +294,7 @@ namespace DemoSignalSystem
                     else if (selectTrafficLight == "D" && selectDirection == "forward" && selectLightColor == "green")
                     {
                         dLight.forwardOn();
+                        dLightButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight == "D" && selectDirection == "right" && selectLightColor == "green")
                     {
@@ -324,6 +329,7 @@ namespace DemoSignalSystem
                         dLight.forwardOff();
                         dLight.rightOff();
                         dLight.leftOff();
+                        dLightButton2.BackColor = Color.Green;
                     }
                 }
                 if (splitInstruction[i] == "%")
