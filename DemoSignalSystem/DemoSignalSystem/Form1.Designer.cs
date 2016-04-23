@@ -31,26 +31,39 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabLightPattern = new System.Windows.Forms.TabPage();
+            this.secondsTextBox = new System.Windows.Forms.TextBox();
+            this.secondsLabel = new System.Windows.Forms.Label();
+            this.hoursLabel = new System.Windows.Forms.Label();
+            this.hoursTextBox = new System.Windows.Forms.TextBox();
+            this.minutesLabel = new System.Windows.Forms.Label();
+            this.minutesTextBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.bLeftButton2 = new System.Windows.Forms.Button();
+            this.cLeftButton2 = new System.Windows.Forms.Button();
             this.dLeftButton2 = new System.Windows.Forms.Button();
             this.dLightButton2 = new System.Windows.Forms.Button();
             this.aLightButton2 = new System.Windows.Forms.Button();
-            this.bLightButton2 = new System.Windows.Forms.Button();
+            this.cLightButton2 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabLightStatus = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tramButton = new System.Windows.Forms.Button();
+            this.numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.startStopButton = new System.Windows.Forms.Button();
             this.patternListBox = new System.Windows.Forms.ListBox();
-            this.timerTextBox = new System.Windows.Forms.TextBox();
             this.lightCycleLabel = new System.Windows.Forms.Label();
             this.lightCycleComboBox = new System.Windows.Forms.ComboBox();
             this.timeMultiLabel = new System.Windows.Forms.Label();
-            this.timeMultiBox = new System.Windows.Forms.TextBox();
             this.tabSimulation = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.secondsTextBox2 = new System.Windows.Forms.TextBox();
+            this.secondsLabel2 = new System.Windows.Forms.Label();
+            this.hoursLabel2 = new System.Windows.Forms.Label();
+            this.hoursTextBox2 = new System.Windows.Forms.TextBox();
+            this.minutesLabel2 = new System.Windows.Forms.Label();
+            this.minutesTextBox2 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cLeftButton = new System.Windows.Forms.Button();
+            this.bLeftButton = new System.Windows.Forms.Button();
             this.dLeftButton = new System.Windows.Forms.Button();
             this.bLightButton = new System.Windows.Forms.Button();
             this.dLightButton = new System.Windows.Forms.Button();
@@ -59,36 +72,25 @@
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tramButton2 = new System.Windows.Forms.Button();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.startStopButton2 = new System.Windows.Forms.Button();
-            this.timerTextBox2 = new System.Windows.Forms.TextBox();
             this.patternListBox2 = new System.Windows.Forms.ListBox();
-            this.timeMultiTextBox2 = new System.Windows.Forms.TextBox();
             this.lightCycleComboBox2 = new System.Windows.Forms.ComboBox();
             this.timeMultiLabel2 = new System.Windows.Forms.Label();
             this.lightCycleLabel2 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.minutesTextBox = new System.Windows.Forms.TextBox();
-            this.minutesLabel = new System.Windows.Forms.Label();
-            this.hoursTextBox = new System.Windows.Forms.TextBox();
-            this.hoursLabel = new System.Windows.Forms.Label();
-            this.secondsLabel = new System.Windows.Forms.Label();
-            this.secondsTextBox = new System.Windows.Forms.TextBox();
-            this.minutesTextBox2 = new System.Windows.Forms.TextBox();
-            this.minutesLabel2 = new System.Windows.Forms.Label();
-            this.hoursTextBox2 = new System.Windows.Forms.TextBox();
-            this.hoursLabel2 = new System.Windows.Forms.Label();
-            this.secondsLabel2 = new System.Windows.Forms.Label();
-            this.secondsTextBox2 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabLightPattern.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -120,30 +122,81 @@
             this.tabLightPattern.UseVisualStyleBackColor = true;
             this.tabLightPattern.Click += new System.EventHandler(this.tabLightPattern_Click);
             // 
+            // secondsTextBox
+            // 
+            this.secondsTextBox.Location = new System.Drawing.Point(794, 3);
+            this.secondsTextBox.Name = "secondsTextBox";
+            this.secondsTextBox.ReadOnly = true;
+            this.secondsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.secondsTextBox.TabIndex = 6;
+            // 
+            // secondsLabel
+            // 
+            this.secondsLabel.AutoSize = true;
+            this.secondsLabel.Location = new System.Drawing.Point(739, 6);
+            this.secondsLabel.Name = "secondsLabel";
+            this.secondsLabel.Size = new System.Drawing.Size(49, 13);
+            this.secondsLabel.TabIndex = 5;
+            this.secondsLabel.Text = "Seconds";
+            // 
+            // hoursLabel
+            // 
+            this.hoursLabel.AutoSize = true;
+            this.hoursLabel.Location = new System.Drawing.Point(431, 6);
+            this.hoursLabel.Name = "hoursLabel";
+            this.hoursLabel.Size = new System.Drawing.Size(35, 13);
+            this.hoursLabel.TabIndex = 4;
+            this.hoursLabel.Text = "Hours";
+            // 
+            // hoursTextBox
+            // 
+            this.hoursTextBox.Location = new System.Drawing.Point(472, 3);
+            this.hoursTextBox.Name = "hoursTextBox";
+            this.hoursTextBox.ReadOnly = true;
+            this.hoursTextBox.Size = new System.Drawing.Size(100, 20);
+            this.hoursTextBox.TabIndex = 3;
+            // 
+            // minutesLabel
+            // 
+            this.minutesLabel.AutoSize = true;
+            this.minutesLabel.Location = new System.Drawing.Point(578, 6);
+            this.minutesLabel.Name = "minutesLabel";
+            this.minutesLabel.Size = new System.Drawing.Size(44, 13);
+            this.minutesLabel.TabIndex = 2;
+            this.minutesLabel.Text = "Minutes";
+            // 
+            // minutesTextBox
+            // 
+            this.minutesTextBox.Location = new System.Drawing.Point(628, 3);
+            this.minutesTextBox.Name = "minutesTextBox";
+            this.minutesTextBox.ReadOnly = true;
+            this.minutesTextBox.Size = new System.Drawing.Size(100, 20);
+            this.minutesTextBox.TabIndex = 1;
+            // 
             // panel1
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Controls.Add(this.bLeftButton2);
+            this.panel1.Controls.Add(this.cLeftButton2);
             this.panel1.Controls.Add(this.dLeftButton2);
             this.panel1.Controls.Add(this.dLightButton2);
             this.panel1.Controls.Add(this.aLightButton2);
-            this.panel1.Controls.Add(this.bLightButton2);
+            this.panel1.Controls.Add(this.cLightButton2);
             this.panel1.Location = new System.Drawing.Point(366, 22);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1062, 578);
             this.panel1.TabIndex = 0;
             // 
-            // bLeftButton2
+            // cLeftButton2
             // 
-            this.bLeftButton2.ForeColor = System.Drawing.Color.Black;
-            this.bLeftButton2.Location = new System.Drawing.Point(665, 254);
-            this.bLeftButton2.Name = "bLeftButton2";
-            this.bLeftButton2.Size = new System.Drawing.Size(20, 22);
-            this.bLeftButton2.TabIndex = 8;
-            this.bLeftButton2.Text = "↓";
-            this.bLeftButton2.UseVisualStyleBackColor = true;
-            this.bLeftButton2.Click += new System.EventHandler(this.button6_Click);
+            this.cLeftButton2.ForeColor = System.Drawing.Color.Black;
+            this.cLeftButton2.Location = new System.Drawing.Point(665, 254);
+            this.cLeftButton2.Name = "cLeftButton2";
+            this.cLeftButton2.Size = new System.Drawing.Size(20, 22);
+            this.cLeftButton2.TabIndex = 8;
+            this.cLeftButton2.Text = "↓";
+            this.cLeftButton2.UseVisualStyleBackColor = true;
+            this.cLeftButton2.Click += new System.EventHandler(this.button6_Click);
             // 
             // dLeftButton2
             // 
@@ -177,16 +230,16 @@
             this.aLightButton2.UseVisualStyleBackColor = true;
             this.aLightButton2.Click += new System.EventHandler(this.button3_Click);
             // 
-            // bLightButton2
+            // cLightButton2
             // 
-            this.bLightButton2.ForeColor = System.Drawing.Color.Black;
-            this.bLightButton2.Location = new System.Drawing.Point(665, 238);
-            this.bLightButton2.Name = "bLightButton2";
-            this.bLightButton2.Size = new System.Drawing.Size(20, 20);
-            this.bLightButton2.TabIndex = 0;
-            this.bLightButton2.Text = "B";
-            this.bLightButton2.UseVisualStyleBackColor = true;
-            this.bLightButton2.Click += new System.EventHandler(this.button1_Click);
+            this.cLightButton2.ForeColor = System.Drawing.Color.Black;
+            this.cLightButton2.Location = new System.Drawing.Point(665, 238);
+            this.cLightButton2.Name = "cLightButton2";
+            this.cLightButton2.Size = new System.Drawing.Size(20, 20);
+            this.cLightButton2.TabIndex = 0;
+            this.cLightButton2.Text = "C";
+            this.cLightButton2.UseVisualStyleBackColor = true;
+            this.cLightButton2.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabControl2
             // 
@@ -211,13 +264,13 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.tramButton);
+            this.tabPage4.Controls.Add(this.numericUpDown);
             this.tabPage4.Controls.Add(this.startStopButton);
             this.tabPage4.Controls.Add(this.patternListBox);
-            this.tabPage4.Controls.Add(this.timerTextBox);
             this.tabPage4.Controls.Add(this.lightCycleLabel);
             this.tabPage4.Controls.Add(this.lightCycleComboBox);
             this.tabPage4.Controls.Add(this.timeMultiLabel);
-            this.tabPage4.Controls.Add(this.timeMultiBox);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -226,34 +279,53 @@
             this.tabPage4.Text = "Pattern";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // tramButton
+            // 
+            this.tramButton.Location = new System.Drawing.Point(6, 75);
+            this.tramButton.Name = "tramButton";
+            this.tramButton.Size = new System.Drawing.Size(340, 23);
+            this.tramButton.TabIndex = 7;
+            this.tramButton.Text = "Tram!";
+            this.tramButton.UseVisualStyleBackColor = true;
+            this.tramButton.Click += new System.EventHandler(this.tramButton_Click);
+            // 
+            // numericUpDown
+            // 
+            this.numericUpDown.Location = new System.Drawing.Point(264, 23);
+            this.numericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown.Name = "numericUpDown";
+            this.numericUpDown.Size = new System.Drawing.Size(82, 20);
+            this.numericUpDown.TabIndex = 6;
+            this.numericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown.ValueChanged += new System.EventHandler(this.numericUpDown_ValueChanged);
+            // 
             // startStopButton
             // 
-            this.startStopButton.Location = new System.Drawing.Point(264, 46);
+            this.startStopButton.Location = new System.Drawing.Point(6, 46);
             this.startStopButton.Name = "startStopButton";
-            this.startStopButton.Size = new System.Drawing.Size(82, 23);
+            this.startStopButton.Size = new System.Drawing.Size(340, 23);
             this.startStopButton.TabIndex = 2;
-            this.startStopButton.Text = "Start";
+            this.startStopButton.Text = "Pause";
             this.startStopButton.UseVisualStyleBackColor = true;
             this.startStopButton.Click += new System.EventHandler(this.startStopButton_Click);
             // 
             // patternListBox
             // 
             this.patternListBox.FormattingEnabled = true;
-            this.patternListBox.Location = new System.Drawing.Point(6, 75);
+            this.patternListBox.Location = new System.Drawing.Point(6, 101);
             this.patternListBox.Name = "patternListBox";
             this.patternListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.patternListBox.Size = new System.Drawing.Size(340, 498);
+            this.patternListBox.Size = new System.Drawing.Size(340, 472);
             this.patternListBox.TabIndex = 5;
-            // 
-            // timerTextBox
-            // 
-            this.timerTextBox.Location = new System.Drawing.Point(6, 49);
-            this.timerTextBox.Name = "timerTextBox";
-            this.timerTextBox.ReadOnly = true;
-            this.timerTextBox.Size = new System.Drawing.Size(252, 20);
-            this.timerTextBox.TabIndex = 1;
-            this.timerTextBox.Text = "0";
-            this.timerTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lightCycleLabel
             // 
@@ -266,8 +338,10 @@
             // 
             // lightCycleComboBox
             // 
+            this.lightCycleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lightCycleComboBox.FormattingEnabled = true;
             this.lightCycleComboBox.Location = new System.Drawing.Point(6, 22);
+            this.lightCycleComboBox.MaxDropDownItems = 25;
             this.lightCycleComboBox.Name = "lightCycleComboBox";
             this.lightCycleComboBox.Size = new System.Drawing.Size(252, 21);
             this.lightCycleComboBox.TabIndex = 2;
@@ -281,14 +355,6 @@
             this.timeMultiLabel.Size = new System.Drawing.Size(85, 13);
             this.timeMultiLabel.TabIndex = 1;
             this.timeMultiLabel.Text = "Playback Speed";
-            // 
-            // timeMultiBox
-            // 
-            this.timeMultiBox.Location = new System.Drawing.Point(264, 22);
-            this.timeMultiBox.Name = "timeMultiBox";
-            this.timeMultiBox.Size = new System.Drawing.Size(82, 20);
-            this.timeMultiBox.TabIndex = 0;
-            this.timeMultiBox.TextChanged += new System.EventHandler(this.timeMultiBox_TextChanged);
             // 
             // tabSimulation
             // 
@@ -318,10 +384,62 @@
             this.tabPage2.Text = "Traffic Map Overview";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // secondsTextBox2
+            // 
+            this.secondsTextBox2.Location = new System.Drawing.Point(786, 3);
+            this.secondsTextBox2.Name = "secondsTextBox2";
+            this.secondsTextBox2.ReadOnly = true;
+            this.secondsTextBox2.Size = new System.Drawing.Size(100, 20);
+            this.secondsTextBox2.TabIndex = 8;
+            // 
+            // secondsLabel2
+            // 
+            this.secondsLabel2.AutoSize = true;
+            this.secondsLabel2.Location = new System.Drawing.Point(731, 6);
+            this.secondsLabel2.Name = "secondsLabel2";
+            this.secondsLabel2.Size = new System.Drawing.Size(49, 13);
+            this.secondsLabel2.TabIndex = 7;
+            this.secondsLabel2.Text = "Seconds";
+            // 
+            // hoursLabel2
+            // 
+            this.hoursLabel2.AutoSize = true;
+            this.hoursLabel2.Location = new System.Drawing.Point(428, 6);
+            this.hoursLabel2.Name = "hoursLabel2";
+            this.hoursLabel2.Size = new System.Drawing.Size(35, 13);
+            this.hoursLabel2.TabIndex = 6;
+            this.hoursLabel2.Text = "Hours";
+            // 
+            // hoursTextBox2
+            // 
+            this.hoursTextBox2.Location = new System.Drawing.Point(469, 3);
+            this.hoursTextBox2.Name = "hoursTextBox2";
+            this.hoursTextBox2.ReadOnly = true;
+            this.hoursTextBox2.Size = new System.Drawing.Size(100, 20);
+            this.hoursTextBox2.TabIndex = 5;
+            // 
+            // minutesLabel2
+            // 
+            this.minutesLabel2.AutoSize = true;
+            this.minutesLabel2.Location = new System.Drawing.Point(575, 6);
+            this.minutesLabel2.Name = "minutesLabel2";
+            this.minutesLabel2.Size = new System.Drawing.Size(44, 13);
+            this.minutesLabel2.TabIndex = 4;
+            this.minutesLabel2.Text = "Minutes";
+            // 
+            // minutesTextBox2
+            // 
+            this.minutesTextBox2.Location = new System.Drawing.Point(625, 3);
+            this.minutesTextBox2.Name = "minutesTextBox2";
+            this.minutesTextBox2.ReadOnly = true;
+            this.minutesTextBox2.Size = new System.Drawing.Size(100, 20);
+            this.minutesTextBox2.TabIndex = 3;
+            // 
             // panel2
             // 
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
             this.panel2.Controls.Add(this.cLeftButton);
+            this.panel2.Controls.Add(this.bLeftButton);
             this.panel2.Controls.Add(this.dLeftButton);
             this.panel2.Controls.Add(this.bLightButton);
             this.panel2.Controls.Add(this.dLightButton);
@@ -334,13 +452,22 @@
             // 
             // cLeftButton
             // 
-            this.cLeftButton.ForeColor = System.Drawing.Color.Black;
-            this.cLeftButton.Location = new System.Drawing.Point(713, 322);
+            this.cLeftButton.Location = new System.Drawing.Point(683, 301);
             this.cLeftButton.Name = "cLeftButton";
             this.cLeftButton.Size = new System.Drawing.Size(20, 20);
-            this.cLeftButton.TabIndex = 8;
-            this.cLeftButton.Text = "←";
+            this.cLeftButton.TabIndex = 9;
+            this.cLeftButton.Text = "↓";
             this.cLeftButton.UseVisualStyleBackColor = true;
+            // 
+            // bLeftButton
+            // 
+            this.bLeftButton.ForeColor = System.Drawing.Color.Black;
+            this.bLeftButton.Location = new System.Drawing.Point(717, 323);
+            this.bLeftButton.Name = "bLeftButton";
+            this.bLeftButton.Size = new System.Drawing.Size(20, 20);
+            this.bLeftButton.TabIndex = 8;
+            this.bLeftButton.Text = "←";
+            this.bLeftButton.UseVisualStyleBackColor = true;
             // 
             // dLeftButton
             // 
@@ -355,7 +482,7 @@
             // 
             // bLightButton
             // 
-            this.bLightButton.Location = new System.Drawing.Point(680, 287);
+            this.bLightButton.Location = new System.Drawing.Point(734, 323);
             this.bLightButton.Name = "bLightButton";
             this.bLightButton.Size = new System.Drawing.Size(20, 20);
             this.bLightButton.TabIndex = 4;
@@ -375,7 +502,7 @@
             // 
             // aLightButton
             // 
-            this.aLightButton.Location = new System.Drawing.Point(289, 312);
+            this.aLightButton.Location = new System.Drawing.Point(291, 313);
             this.aLightButton.Name = "aLightButton";
             this.aLightButton.Size = new System.Drawing.Size(20, 20);
             this.aLightButton.TabIndex = 2;
@@ -384,7 +511,7 @@
             // 
             // cLightButton
             // 
-            this.cLightButton.Location = new System.Drawing.Point(729, 322);
+            this.cLightButton.Location = new System.Drawing.Point(683, 285);
             this.cLightButton.Name = "cLightButton";
             this.cLightButton.Size = new System.Drawing.Size(20, 20);
             this.cLightButton.TabIndex = 1;
@@ -414,10 +541,10 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.tramButton2);
+            this.tabPage5.Controls.Add(this.numericUpDown2);
             this.tabPage5.Controls.Add(this.startStopButton2);
-            this.tabPage5.Controls.Add(this.timerTextBox2);
             this.tabPage5.Controls.Add(this.patternListBox2);
-            this.tabPage5.Controls.Add(this.timeMultiTextBox2);
             this.tabPage5.Controls.Add(this.lightCycleComboBox2);
             this.tabPage5.Controls.Add(this.timeMultiLabel2);
             this.tabPage5.Controls.Add(this.lightCycleLabel2);
@@ -429,45 +556,57 @@
             this.tabPage5.Text = "Pattern";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // tramButton2
+            // 
+            this.tramButton2.Location = new System.Drawing.Point(6, 72);
+            this.tramButton2.Name = "tramButton2";
+            this.tramButton2.Size = new System.Drawing.Size(340, 23);
+            this.tramButton2.TabIndex = 9;
+            this.tramButton2.Text = "Tram!";
+            this.tramButton2.UseVisualStyleBackColor = true;
+            this.tramButton2.Click += new System.EventHandler(this.tramButton2_Click);
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(264, 20);
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(82, 20);
+            this.numericUpDown2.TabIndex = 8;
+            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            // 
             // startStopButton2
             // 
             this.startStopButton2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.startStopButton2.Location = new System.Drawing.Point(264, 46);
+            this.startStopButton2.Location = new System.Drawing.Point(6, 46);
             this.startStopButton2.Name = "startStopButton2";
-            this.startStopButton2.Size = new System.Drawing.Size(82, 23);
+            this.startStopButton2.Size = new System.Drawing.Size(340, 23);
             this.startStopButton2.TabIndex = 7;
-            this.startStopButton2.Text = "Start";
+            this.startStopButton2.Text = "Pause";
             this.startStopButton2.UseVisualStyleBackColor = true;
             this.startStopButton2.Click += new System.EventHandler(this.startStopButton2_Click);
-            // 
-            // timerTextBox2
-            // 
-            this.timerTextBox2.Location = new System.Drawing.Point(6, 46);
-            this.timerTextBox2.Name = "timerTextBox2";
-            this.timerTextBox2.ReadOnly = true;
-            this.timerTextBox2.Size = new System.Drawing.Size(252, 20);
-            this.timerTextBox2.TabIndex = 6;
-            this.timerTextBox2.Text = "0";
-            this.timerTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // patternListBox2
             // 
             this.patternListBox2.FormattingEnabled = true;
-            this.patternListBox2.Location = new System.Drawing.Point(6, 72);
+            this.patternListBox2.Location = new System.Drawing.Point(6, 98);
             this.patternListBox2.Name = "patternListBox2";
-            this.patternListBox2.Size = new System.Drawing.Size(340, 498);
+            this.patternListBox2.Size = new System.Drawing.Size(340, 472);
             this.patternListBox2.TabIndex = 5;
-            // 
-            // timeMultiTextBox2
-            // 
-            this.timeMultiTextBox2.Location = new System.Drawing.Point(264, 20);
-            this.timeMultiTextBox2.Name = "timeMultiTextBox2";
-            this.timeMultiTextBox2.Size = new System.Drawing.Size(82, 20);
-            this.timeMultiTextBox2.TabIndex = 4;
-            this.timeMultiTextBox2.TextChanged += new System.EventHandler(this.timeMultiTextBox2_TextChanged);
             // 
             // lightCycleComboBox2
             // 
+            this.lightCycleComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lightCycleComboBox2.FormattingEnabled = true;
             this.lightCycleComboBox2.Location = new System.Drawing.Point(6, 19);
             this.lightCycleComboBox2.Name = "lightCycleComboBox2";
@@ -503,118 +642,6 @@
             this.tabPage8.Text = "Simulation";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // printPreviewDialog1
-            // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
-            // 
-            // minutesTextBox
-            // 
-            this.minutesTextBox.Location = new System.Drawing.Point(628, 3);
-            this.minutesTextBox.Name = "minutesTextBox";
-            this.minutesTextBox.ReadOnly = true;
-            this.minutesTextBox.Size = new System.Drawing.Size(100, 20);
-            this.minutesTextBox.TabIndex = 1;
-            // 
-            // minutesLabel
-            // 
-            this.minutesLabel.AutoSize = true;
-            this.minutesLabel.Location = new System.Drawing.Point(578, 6);
-            this.minutesLabel.Name = "minutesLabel";
-            this.minutesLabel.Size = new System.Drawing.Size(44, 13);
-            this.minutesLabel.TabIndex = 2;
-            this.minutesLabel.Text = "Minutes";
-            // 
-            // hoursTextBox
-            // 
-            this.hoursTextBox.Location = new System.Drawing.Point(472, 3);
-            this.hoursTextBox.Name = "hoursTextBox";
-            this.hoursTextBox.ReadOnly = true;
-            this.hoursTextBox.Size = new System.Drawing.Size(100, 20);
-            this.hoursTextBox.TabIndex = 3;
-            // 
-            // hoursLabel
-            // 
-            this.hoursLabel.AutoSize = true;
-            this.hoursLabel.Location = new System.Drawing.Point(431, 6);
-            this.hoursLabel.Name = "hoursLabel";
-            this.hoursLabel.Size = new System.Drawing.Size(35, 13);
-            this.hoursLabel.TabIndex = 4;
-            this.hoursLabel.Text = "Hours";
-            // 
-            // secondsLabel
-            // 
-            this.secondsLabel.AutoSize = true;
-            this.secondsLabel.Location = new System.Drawing.Point(739, 6);
-            this.secondsLabel.Name = "secondsLabel";
-            this.secondsLabel.Size = new System.Drawing.Size(49, 13);
-            this.secondsLabel.TabIndex = 5;
-            this.secondsLabel.Text = "Seconds";
-            // 
-            // secondsTextBox
-            // 
-            this.secondsTextBox.Location = new System.Drawing.Point(794, 3);
-            this.secondsTextBox.Name = "secondsTextBox";
-            this.secondsTextBox.ReadOnly = true;
-            this.secondsTextBox.Size = new System.Drawing.Size(100, 20);
-            this.secondsTextBox.TabIndex = 6;
-            // 
-            // minutesTextBox2
-            // 
-            this.minutesTextBox2.Location = new System.Drawing.Point(625, 3);
-            this.minutesTextBox2.Name = "minutesTextBox2";
-            this.minutesTextBox2.ReadOnly = true;
-            this.minutesTextBox2.Size = new System.Drawing.Size(100, 20);
-            this.minutesTextBox2.TabIndex = 3;
-            // 
-            // minutesLabel2
-            // 
-            this.minutesLabel2.AutoSize = true;
-            this.minutesLabel2.Location = new System.Drawing.Point(575, 6);
-            this.minutesLabel2.Name = "minutesLabel2";
-            this.minutesLabel2.Size = new System.Drawing.Size(44, 13);
-            this.minutesLabel2.TabIndex = 4;
-            this.minutesLabel2.Text = "Minutes";
-            // 
-            // hoursTextBox2
-            // 
-            this.hoursTextBox2.Location = new System.Drawing.Point(469, 3);
-            this.hoursTextBox2.Name = "hoursTextBox2";
-            this.hoursTextBox2.ReadOnly = true;
-            this.hoursTextBox2.Size = new System.Drawing.Size(100, 20);
-            this.hoursTextBox2.TabIndex = 5;
-            // 
-            // hoursLabel2
-            // 
-            this.hoursLabel2.AutoSize = true;
-            this.hoursLabel2.Location = new System.Drawing.Point(428, 6);
-            this.hoursLabel2.Name = "hoursLabel2";
-            this.hoursLabel2.Size = new System.Drawing.Size(35, 13);
-            this.hoursLabel2.TabIndex = 6;
-            this.hoursLabel2.Text = "Hours";
-            // 
-            // secondsLabel2
-            // 
-            this.secondsLabel2.AutoSize = true;
-            this.secondsLabel2.Location = new System.Drawing.Point(731, 6);
-            this.secondsLabel2.Name = "secondsLabel2";
-            this.secondsLabel2.Size = new System.Drawing.Size(49, 13);
-            this.secondsLabel2.TabIndex = 7;
-            this.secondsLabel2.Text = "Seconds";
-            // 
-            // secondsTextBox2
-            // 
-            this.secondsTextBox2.Location = new System.Drawing.Point(786, 3);
-            this.secondsTextBox2.Name = "secondsTextBox2";
-            this.secondsTextBox2.ReadOnly = true;
-            this.secondsTextBox2.Size = new System.Drawing.Size(100, 20);
-            this.secondsTextBox2.TabIndex = 8;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -630,12 +657,14 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -652,35 +681,20 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button dLightButton2;
         private System.Windows.Forms.Button aLightButton2;
-        private System.Windows.Forms.Button bLightButton2;
-        private System.Windows.Forms.Button bLeftButton2;
+        private System.Windows.Forms.Button cLightButton2;
         private System.Windows.Forms.Button dLeftButton2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button cLightButton;
-        private System.Windows.Forms.TabControl tabControl4;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.Button bLightButton;
         private System.Windows.Forms.Button dLightButton;
         private System.Windows.Forms.Button aLightButton;
-        private System.Windows.Forms.Button cLeftButton;
+        private System.Windows.Forms.Button bLeftButton;
         private System.Windows.Forms.Button dLeftButton;
         private System.Windows.Forms.ListBox patternListBox;
         private System.Windows.Forms.Label lightCycleLabel;
         private System.Windows.Forms.ComboBox lightCycleComboBox;
         private System.Windows.Forms.Label timeMultiLabel;
-        private System.Windows.Forms.TextBox timeMultiBox;
-        private System.Windows.Forms.ListBox patternListBox2;
-        private System.Windows.Forms.TextBox timeMultiTextBox2;
-        private System.Windows.Forms.ComboBox lightCycleComboBox2;
-        private System.Windows.Forms.Label timeMultiLabel2;
-        private System.Windows.Forms.Label lightCycleLabel2;
         private System.Windows.Forms.Button startStopButton;
-        private System.Windows.Forms.TextBox timerTextBox;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.Button startStopButton2;
-        private System.Windows.Forms.TextBox timerTextBox2;
         private System.Windows.Forms.TextBox secondsTextBox;
         private System.Windows.Forms.Label secondsLabel;
         private System.Windows.Forms.Label hoursLabel;
@@ -693,6 +707,21 @@
         private System.Windows.Forms.TextBox hoursTextBox2;
         private System.Windows.Forms.Label minutesLabel2;
         private System.Windows.Forms.TextBox minutesTextBox2;
+        private System.Windows.Forms.NumericUpDown numericUpDown;
+        private System.Windows.Forms.Button tramButton;
+        private System.Windows.Forms.Button cLeftButton2;
+        private System.Windows.Forms.Button cLeftButton;
+        private System.Windows.Forms.TabControl tabControl4;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Button tramButton2;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Button startStopButton2;
+        private System.Windows.Forms.ListBox patternListBox2;
+        private System.Windows.Forms.ComboBox lightCycleComboBox2;
+        private System.Windows.Forms.Label timeMultiLabel2;
+        private System.Windows.Forms.Label lightCycleLabel2;
+        private System.Windows.Forms.TabPage tabPage8;
     }
 }
 
