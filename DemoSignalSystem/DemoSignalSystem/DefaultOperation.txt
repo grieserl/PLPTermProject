@@ -10,5 +10,3 @@
 - B right red - D right red - B left green
 60
 - B left red - A right red - C right red
-60
-- * all red - A forward green - C forward green
