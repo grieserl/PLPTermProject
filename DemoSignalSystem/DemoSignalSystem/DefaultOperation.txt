@@ -1,12 +1,20 @@
 ﻿60
-- * all red - A forward green - C forward green
+- * all red - B forward green - D forward Green
+3
+- * all red
 60
-- A right green - C right green
+- D left green - D right green
+3
+- * all red
 60
-- A forward red - C forward red - B right green - D all green
+- C left green - C right green
+3
+- * all red
 60
-- D left red - C left green - A right red
+- A forward green - C forward green
+3
+- * all red
 60
-- B right red - D right red - B left green
-60
-- B left red - A right red - C right red
+- A left green - A right green
+3
+- * all red
