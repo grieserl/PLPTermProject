@@ -1,4 +1,4 @@
 ﻿15
 - * all red
-300
+30
 - A right green - B right green - C right green - C left green % TramEnd

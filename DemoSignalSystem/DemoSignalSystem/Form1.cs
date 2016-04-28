@@ -307,8 +307,7 @@ namespace DemoSignalSystem
                     if (selectTrafficLight == "A" && selectDirection == "forward" && selectLightColor == "green")
                     {
                         aLight.forwardOn();
-                        aLightButton.BackColor = Color.Green;
-                        
+                        aLightButton.BackColor = Color.Green;                        
 
                     }
                     else if (selectTrafficLight == "A" && selectDirection == "right" && selectLightColor == "green")
@@ -331,18 +330,22 @@ namespace DemoSignalSystem
                     else if (selectTrafficLight == "B" && selectDirection == "forward" && selectLightColor == "green")
                     {
                         bLight.forwardOn();
+                        bLightButton.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight == "B" && selectDirection == "right" && selectLightColor == "green")
                     {
                         bLight.rightOn();
+                        
                     }
                     else if (selectTrafficLight == "B" && selectDirection == "left" && selectLightColor == "green")
                     {
                         bLight.leftOn();
+                        bLeftButton.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight == "B" && selectDirection == "forward" && selectLightColor == "red")
                     {
                         bLight.forwardOff();
+                        bLightButton.BackColor = Color.Red;
 
                     }
                     else if (selectTrafficLight == "B" && selectDirection == "right" && selectLightColor == "red")
@@ -352,14 +355,17 @@ namespace DemoSignalSystem
                     else if (selectTrafficLight == "B" && selectDirection == "left" && selectLightColor == "red")
                     {
                         bLight.leftOff();
+                        bLeftButton.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight == "C" && selectDirection == "forward" && selectLightColor == "green")
                     {
                         cLight.forwardOn();
+                        cLightButton.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight == "C" && selectDirection == "right" && selectLightColor == "green")
                     {
                         cLight.rightOn();
+                        cRightButton.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight == "C" && selectDirection == "left" && selectLightColor == "green")
                     {
@@ -368,10 +374,12 @@ namespace DemoSignalSystem
                     else if (selectTrafficLight == "C" && selectDirection == "forward" && selectLightColor == "red")
                     {
                         cLight.forwardOff();
+                        cLightButton.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight == "C" && selectDirection == "right" && selectLightColor == "red")
                     {
                         cLight.rightOff();
+                        cRightButton.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight == "C" && selectDirection == "left" && selectLightColor == "red")
                     {
@@ -380,42 +388,55 @@ namespace DemoSignalSystem
                     else if (selectTrafficLight == "D" && selectDirection == "forward" && selectLightColor == "green")
                     {
                         dLight.forwardOn();
-                        dLightButton2.BackColor = Color.Green;
+                        dLightButton.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight == "D" && selectDirection == "right" && selectLightColor == "green")
                     {
                         dLight.rightOn();
+
                     }
                     else if (selectTrafficLight == "D" && selectDirection == "left" && selectLightColor == "green")
                     {
                         dLight.leftOn();
+                        dLeftButton.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight == "D" && selectDirection == "forward" && selectLightColor == "red")
                     {
                         dLight.forwardOff();
+                        dLightButton.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight == "D" && selectDirection == "right" && selectLightColor == "red")
                     {
                         dLight.rightOff();
+                        
                     }
                     else if (selectTrafficLight == "D" && selectDirection == "left" && selectLightColor == "red")
                     {
                         dLight.leftOff();
+                        dLeftButton.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight == "*" && selectDirection == "all" && selectLightColor == "red")
                     {
                         aLight.forwardOff();
+                        aLightButton.BackColor = Color.Red;
                         aLight.rightOff();
+                        aRightButton.BackColor = Color.Red;
                         bLight.forwardOff();
+                        bLightButton.BackColor = Color.Red; 
                         bLight.rightOff();
                         bLight.leftOff();
+                        bLeftButton.BackColor = Color.Red;
                         cLight.forwardOff();
+                        cLightButton.BackColor = Color.Red;
                         cLight.rightOff();
+                        cRightButton.BackColor = Color.Red;
                         cLight.leftOff();
                         dLight.forwardOff();
+                        dLightButton.BackColor = Color.Red;
                         dLight.rightOff();
                         dLight.leftOff();
-                        dLightButton2.BackColor = Color.Green;
+                        dLeftButton.BackColor = Color.Red;
+                        
                     }
                 }
                 if (splitInstruction[i] == "%")
@@ -457,74 +478,93 @@ namespace DemoSignalSystem
                     if (selectTrafficLight2 == "A" && selectDirection2 == "forward" && selectLightColor2 == "green")
                     {
                         a2Light.forwardOn();
+                        aLightButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "A" && selectDirection2 == "right" && selectLightColor2 == "green")
                     {
                         a2Light.rightOn();
+                        aRightButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "A" && selectDirection2 == "left" && selectLightColor2 == "green")
                     {
                         a2Light.leftOn();
+                        aLeftButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "A" && selectDirection2 == "forward" && selectLightColor2 == "red")
                     {
                         a2Light.forwardOff();
+                        aLightButton2.BackColor = Color.Red;
+
                     }
                     else if (selectTrafficLight2 == "A" && selectDirection2 == "right" && selectLightColor2 == "red")
                     {
                         a2Light.rightOff();
+                        aRightButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "A" && selectDirection2 == "left" && selectLightColor2 == "red")
                     {
                         a2Light.leftOff();
+                        aLeftButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "B" && selectDirection2 == "forward" && selectLightColor2 == "green")
                     {
                         b2Light.forwardOn();
+                        bLightButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "B" && selectDirection2 == "right" && selectLightColor2 == "green")
                     {
                         b2Light.rightOn();
+                        bRightButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "B" && selectDirection2 == "left" && selectLightColor2 == "green")
                     {
                         b2Light.leftOn();
+                        bLeftButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "B" && selectDirection2 == "forward" && selectLightColor2 == "red")
                     {
                         b2Light.forwardOff();
+                        bLightButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "B" && selectDirection2 == "right" && selectLightColor2 == "red")
                     {
                         b2Light.rightOff();
+                        bRightButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "B" && selectDirection2 == "left" && selectLightColor2 == "red")
                     {
                         b2Light.leftOff();
+                        bLeftButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "C" && selectDirection2 == "forward" && selectLightColor2 == "green")
                     {
                         c2Light.forwardOn();
+                        cLightButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "C" && selectDirection2 == "right" && selectLightColor2 == "green")
                     {
                         c2Light.rightOn();
+                        cRightButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "C" && selectDirection2 == "left" && selectLightColor2 == "green")
                     {
                         c2Light.leftOn();
+                        cLeftButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "C" && selectDirection2 == "forward" && selectLightColor2 == "red")
                     {
                         c2Light.forwardOff();
+                        cLightButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "C" && selectDirection2 == "right" && selectLightColor2 == "red")
                     {
                         c2Light.rightOff();
+                        cRightButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "C" && selectDirection2 == "left" && selectLightColor2 == "red")
                     {
                         c2Light.leftOff();
+                        cLeftButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "D" && selectDirection2 == "forward" && selectLightColor2 == "green")
                     {
@@ -534,38 +574,55 @@ namespace DemoSignalSystem
                     else if (selectTrafficLight2 == "D" && selectDirection2 == "right" && selectLightColor2 == "green")
                     {
                         d2Light.rightOn();
+                        dRightButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "D" && selectDirection2 == "left" && selectLightColor2 == "green")
                     {
                         d2Light.leftOn();
+                        dLeftButton2.BackColor = Color.Green;
                     }
                     else if (selectTrafficLight2 == "D" && selectDirection2 == "forward" && selectLightColor2 == "red")
                     {
                         d2Light.forwardOff();
+                        dLightButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "D" && selectDirection2 == "right" && selectLightColor2 == "red")
                     {
                         d2Light.rightOff();
+                        dRightButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "D" && selectDirection2 == "left" && selectLightColor2 == "red")
                     {
                         d2Light.leftOff();
+                        dLeftButton2.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight2 == "*" && selectDirection2 == "all" && selectLightColor2 == "red")
                     {
                         a2Light.forwardOff();
+                        aLightButton2.BackColor = Color.Red;
                         a2Light.rightOff();
+                        aRightButton2.BackColor = Color.Red;
                         a2Light.leftOff();
+                        aLeftButton2.BackColor = Color.Red;
                         b2Light.forwardOff();
+                        bLightButton2.BackColor = Color.Red;
                         b2Light.rightOff();
+                        bRightButton2.BackColor = Color.Red;
                         b2Light.leftOff();
+                        bLeftButton2.BackColor = Color.Red;
                         c2Light.forwardOff();
+                        cLightButton2.BackColor = Color.Red;
                         c2Light.rightOff();
+                        cRightButton2.BackColor = Color.Red;
                         c2Light.leftOff();
+                        cLeftButton2.BackColor = Color.Red;
                         d2Light.forwardOff();
+                        dLightButton2.BackColor = Color.Red;
                         d2Light.rightOff();
+                        dRightButton2.BackColor = Color.Red;
                         d2Light.leftOff();
-                        dLightButton2.BackColor = Color.Green;
+                        dLeftButton2.BackColor = Color.Red;
+                      
                     }
                 }
                 if (splitInstruction2[i] == "%")
