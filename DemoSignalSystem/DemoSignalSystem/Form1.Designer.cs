@@ -64,6 +64,7 @@
             this.minutesLabel2 = new System.Windows.Forms.Label();
             this.minutesTextBox2 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cLeftButton = new System.Windows.Forms.Button();
             this.bLeftButton = new System.Windows.Forms.Button();
             this.dLeftButton = new System.Windows.Forms.Button();
             this.bLightButton = new System.Windows.Forms.Button();
@@ -81,7 +82,8 @@
             this.timeMultiLabel2 = new System.Windows.Forms.Label();
             this.lightCycleLabel2 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.cLeftButton = new System.Windows.Forms.Button();
+            this.aRightButton = new System.Windows.Forms.Button();
+            this.speedBar = new System.Windows.Forms.TrackBar();
             this.tabControl1.SuspendLayout();
             this.tabLightPattern.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -93,6 +95,7 @@
             this.tabControl4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.speedBar)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -464,6 +467,8 @@
             // panel2
             // 
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.Controls.Add(this.speedBar);
+            this.panel2.Controls.Add(this.aRightButton);
             this.panel2.Controls.Add(this.cLeftButton);
             this.panel2.Controls.Add(this.bLeftButton);
             this.panel2.Controls.Add(this.dLeftButton);
@@ -475,6 +480,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1071, 582);
             this.panel2.TabIndex = 2;
+            // 
+            // cLeftButton
+            // 
+            this.cLeftButton.Location = new System.Drawing.Point(683, 302);
+            this.cLeftButton.Name = "cLeftButton";
+            this.cLeftButton.Size = new System.Drawing.Size(19, 23);
+            this.cLeftButton.TabIndex = 9;
+            this.cLeftButton.Text = "↓";
+            this.cLeftButton.UseVisualStyleBackColor = true;
             // 
             // bLeftButton
             // 
@@ -659,14 +673,25 @@
             this.tabPage8.Text = "Simulation";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // cLeftButton
+            // aRightButton
             // 
-            this.cLeftButton.Location = new System.Drawing.Point(683, 302);
-            this.cLeftButton.Name = "cLeftButton";
-            this.cLeftButton.Size = new System.Drawing.Size(19, 23);
-            this.cLeftButton.TabIndex = 9;
-            this.cLeftButton.Text = "↓";
-            this.cLeftButton.UseVisualStyleBackColor = true;
+            this.aRightButton.ForeColor = System.Drawing.Color.Black;
+            this.aRightButton.Location = new System.Drawing.Point(286, 340);
+            this.aRightButton.Name = "aRightButton";
+            this.aRightButton.Size = new System.Drawing.Size(20, 22);
+            this.aRightButton.TabIndex = 10;
+            this.aRightButton.Text = "↓";
+            this.aRightButton.UseVisualStyleBackColor = true;
+            // 
+            // speedBar
+            // 
+            this.speedBar.Location = new System.Drawing.Point(147, 498);
+            this.speedBar.Maximum = 50;
+            this.speedBar.Minimum = 1;
+            this.speedBar.Name = "speedBar";
+            this.speedBar.Size = new System.Drawing.Size(376, 45);
+            this.speedBar.TabIndex = 11;
+            this.speedBar.Value = 1;
             // 
             // Form1
             // 
@@ -687,10 +712,12 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.tabControl4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.speedBar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -750,6 +777,8 @@
         private System.Windows.Forms.Button bLightButton2;
         private System.Windows.Forms.Button aLeftButton2;
         private System.Windows.Forms.Button cLeftButton;
+        private System.Windows.Forms.Button aRightButton;
+        private System.Windows.Forms.TrackBar speedBar;
     }
 }
 

@@ -307,20 +307,25 @@ namespace DemoSignalSystem
                     if (selectTrafficLight == "A" && selectDirection == "forward" && selectLightColor == "green")
                     {
                         aLight.forwardOn();
+                        aLightButton.BackColor = Color.Green;
+                        
 
                     }
                     else if (selectTrafficLight == "A" && selectDirection == "right" && selectLightColor == "green")
                     {
                         aLight.rightOn();
+                        aRightButton.BackColor = Color.Green;
                     }
 
                     else if (selectTrafficLight == "A" && selectDirection == "forward" && selectLightColor == "red")
                     {
-                        aLight.forwardOff();
+                        aLight.forwardOff();                  
+                        aLightButton.BackColor = Color.Red;
                     }
                     else if (selectTrafficLight == "A" && selectDirection == "right" && selectLightColor == "red")
                     {
                         aLight.rightOff();
+                        aRightButton.BackColor = Color.Red;
 
                     }
                     else if (selectTrafficLight == "B" && selectDirection == "forward" && selectLightColor == "green")
