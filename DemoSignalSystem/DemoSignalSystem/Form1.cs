@@ -24,34 +24,34 @@ namespace DemoSignalSystem
         bool isRunning = true;
         double numSeconds = 0.0;
         double multiplier = 1.0;
-        double curCycleEndTime = -1;
-        double curCycleEndTime2 = -1;
+        double trainCycleEndTime = -1;
+        double tramCycleEndTime = -1;
         double dbl = 0.0;
         int lengthOfTram = 0;
-        int instructionCounter = 0;
-        int instructionCounter2 = 0;
+        int trainInstructionCounter = 0;
+        int tramInstructionCounter = 0;
         int hours, minutes, seconds = 0;
         Random rand = new Random();
-        List<double> cycleTimings = new List<double>();
-        List<double> cycleTimings2 = new List<double>();
-        List<string> cycleInstructions = new List<string>();
-        List<string> cycleInstructions2 = new List<string>();
-        string[] listOfCycles;
-        string[] listOfCycles2;
-        string[] splitInstruction;
-        string[] splitInstruction2;
-        string selectedCycle = "";
-        string selectedCycle2 = "";
-        string fileName = "";
-        string fileName2 = "";
-        string currentInstruction = "";
-        string currentInstruction2 = "";
-        string selectTrafficLight = "";
-        string selectTrafficLight2 = "";
-        string selectDirection = "";
-        string selectDirection2 = "";
-        string selectLightColor = "";
-        string selectLightColor2 = "";
+        List<double> trainCycleTimings = new List<double>();
+        List<double> tramCycleTimings = new List<double>();
+        List<string> trainCycleInstructions = new List<string>();
+        List<string> tramCycleInstructions = new List<string>();
+        string[] trainListOfCycles;
+        string[] tramListOfCycles;
+        string[] trainSplitInstruction;
+        string[] tramSplitInstruction;
+        string trainSelectedCycle = "TrainDefaultOperation";
+        string tramSelectedCycle = "TramDefaultOperation";
+        string trainFileName = "";
+        string tramFileName = "";
+        string trainCurrentInstruction = "";
+        string tramCurrentInstruction = "";
+        string trainSelectTrafficLight = "";
+        string tramSelectTrafficLight = "";
+        string trainSelectDirection = "";
+        string tramSelectDirection = "";
+        string trainSelectLightColor = "";
+        string tramSelectLightColor = "";
 
 
         //Lights are set up as TrafficLight(bool hasForward, bool forward, bool hasRight, bool right, bool hasLeft, bool left, string type)
@@ -74,45 +74,45 @@ namespace DemoSignalSystem
         public Form1()
         {
             InitializeComponent();
-            initializeCycleLists();
-            initializeCycleLists2();
+            initializeTrainCycleLists();
+            initializeTramCycleLists();
             initializeTimer();
         }
 
         //Loads all the possible types of selectable cycles into the comboBox based on user permissions. Basic users only get the default operations
-        public void initializeCycleLists()
+        public void initializeTrainCycleLists()
         {
-            listOfCycles = File.ReadAllLines("ListOfCycles.txt");
+            trainListOfCycles = File.ReadAllLines("TrainListOfCycles.txt");
             if (isEmergencyUser || isAdmin)
             {
-                for (int i = 0; i < listOfCycles.Length; i++)
+                for (int i = 0; i < trainListOfCycles.Length; i++)
                 {
-                    lightCycleComboBox.Items.Add(listOfCycles[i]);
+                    trainLightCycleComboBox.Items.Add(trainListOfCycles[i]);
                 }
-                lightCycleComboBox.SelectedIndex = 0;
+                trainLightCycleComboBox.SelectedIndex = 0;
             }
             else
             {
-                lightCycleComboBox.Items.Add(listOfCycles[0]);
-                lightCycleComboBox.SelectedIndex = 0;
+                trainLightCycleComboBox.Items.Add(trainListOfCycles[0]);
+                trainLightCycleComboBox.SelectedIndex = 0;
             }  
         }
 
-        public void initializeCycleLists2()
+        public void initializeTramCycleLists()
         {
-            listOfCycles2 = File.ReadAllLines("ListOfCycles2.txt");
+            tramListOfCycles = File.ReadAllLines("TramListOfCycles.txt");
             if (isEmergencyUser || isAdmin)
             {
-                for (int i = 0; i < listOfCycles2.Length; i++)
+                for (int i = 0; i < tramListOfCycles.Length; i++)
                 {
-                    lightCycleComboBox2.Items.Add(listOfCycles2[i]);
+                    tramLightCycleComboBox.Items.Add(tramListOfCycles[i]);
                 }
-                lightCycleComboBox2.SelectedIndex = 0;
+                tramLightCycleComboBox.SelectedIndex = 0;
             }
             else
             {
-                lightCycleComboBox2.Items.Add(listOfCycles2[0]);
-                lightCycleComboBox2.SelectedIndex = 0;
+                tramLightCycleComboBox.Items.Add(tramListOfCycles[0]);
+                tramLightCycleComboBox.SelectedIndex = 0;
             }
         }
 
@@ -157,18 +157,18 @@ namespace DemoSignalSystem
             SetControlText(secondsTextBox2, seconds.ToString());
             SetControlText(secondsTextBox, seconds.ToString());
 
-            if (numSeconds == curCycleEndTime && numSeconds == curCycleEndTime2)
+            if (numSeconds == trainCycleEndTime && numSeconds == tramCycleEndTime)
             {
-                interpretInstruction();
-                interpretInstruction2();
+                interpretTrainInstruction();
+                interpretTramInstruction();
             }
-            else if (numSeconds == curCycleEndTime)
+            else if (numSeconds == trainCycleEndTime)
             {
-                interpretInstruction();
+                interpretTrainInstruction();
             }
-            else if (numSeconds == curCycleEndTime2)
+            else if (numSeconds == tramCycleEndTime)
             {
-                interpretInstruction2();
+                interpretTramInstruction();
             }
         }
 
@@ -193,20 +193,20 @@ namespace DemoSignalSystem
         }   
 
         //Function that runs the operation text files.
-        public void runFile()
+        public void runTrainFile()
         {
-            instructionCounter = 0;
-            cycleTimings.Clear();
-            cycleInstructions.Clear();
-            fileName = selectedCycle + ".txt";
-            string[] fileContents = File.ReadAllLines(fileName);
+            trainInstructionCounter = 0;
+            trainCycleTimings.Clear();
+            trainCycleInstructions.Clear();
+            trainFileName = trainSelectedCycle + ".txt";
+            string[] fileContents = File.ReadAllLines(trainFileName);
 
             //Populates the instruction lists with their respective timings
             for (int i = 0; i < fileContents.Length; i += 2)
             {
                 if (Double.TryParse(fileContents[i], out dbl))
                 {
-                    cycleTimings.Add(dbl);
+                    trainCycleTimings.Add(dbl);
                 }
                 else
                 {
@@ -215,47 +215,47 @@ namespace DemoSignalSystem
                     globalTimer.Dispose();
                     Application.Exit();
                 }
-                cycleInstructions.Add(fileContents[i + 1]);
+                trainCycleInstructions.Add(fileContents[i + 1]);
             }
             //Populates the patternListBoxes. They work in real time to show which instructions/cycles are going on.
-            if (patternListBox.InvokeRequired)
+            if (trainPatternListBox.InvokeRequired)
             {
-                patternListBox.Invoke(new MethodInvoker(delegate { patternListBox.Items.Clear(); }));
+                trainPatternListBox.Invoke(new MethodInvoker(delegate { trainPatternListBox.Items.Clear(); }));
             }
             else
             {
-                patternListBox.Items.Clear();
+                trainPatternListBox.Items.Clear();
             }
 
-            if (patternListBox.InvokeRequired)
+            if (trainPatternListBox.InvokeRequired)
             {
-                patternListBox.Invoke(new MethodInvoker(delegate { patternListBox.Items.AddRange(cycleInstructions.ToArray()); }));
+                trainPatternListBox.Invoke(new MethodInvoker(delegate { trainPatternListBox.Items.AddRange(trainCycleInstructions.ToArray()); }));
             }
             else
             {
-                patternListBox.Items.AddRange(cycleInstructions.ToArray());
+                trainPatternListBox.Items.AddRange(trainCycleInstructions.ToArray());
             }
 
             //Preps the next instruction to be processed
-            curCycleEndTime = numSeconds + cycleTimings[instructionCounter];
-            currentInstruction = cycleInstructions[instructionCounter];
-            interpretInstruction();
+            trainCycleEndTime = numSeconds + trainCycleTimings[trainInstructionCounter];
+            trainCurrentInstruction = trainCycleInstructions[trainInstructionCounter];
+            interpretTrainInstruction();
         }
 
-        public void runFile2()
+        public void runTramFile()
         {
-            instructionCounter2 = 0;
-            cycleTimings2.Clear();
-            cycleInstructions2.Clear();
-            fileName2 = selectedCycle2 + ".txt";
-            string[] fileContents2 = File.ReadAllLines(fileName2);
+            tramInstructionCounter = 0;
+            tramCycleTimings.Clear();
+            tramCycleInstructions.Clear();
+            tramFileName = tramSelectedCycle + ".txt";
+            string[] fileContents2 = File.ReadAllLines(tramFileName);
 
             //Populates the instruction lists with their respective timings
             for (int i = 0; i < fileContents2.Length; i += 2)
             {
                 if (Double.TryParse(fileContents2[i], out dbl))
                 {
-                    cycleTimings2.Add(dbl);
+                    tramCycleTimings.Add(dbl);
                 }
                 else
                 {
@@ -264,158 +264,158 @@ namespace DemoSignalSystem
                     globalTimer.Dispose();
                     Application.Exit();
                 }
-                cycleInstructions2.Add(fileContents2[i + 1]);
+                tramCycleInstructions.Add(fileContents2[i + 1]);
             }
             //Populates the patternListBoxes. They work in real time to show which instructions/cycles are going on.
-            if (patternListBox2.InvokeRequired)
+            if (tramPatternListBox.InvokeRequired)
             {
-                patternListBox2.Invoke(new MethodInvoker(delegate { patternListBox2.Items.Clear(); }));
+                tramPatternListBox.Invoke(new MethodInvoker(delegate { tramPatternListBox.Items.Clear(); }));
             }
             else
             {
-                patternListBox2.Items.Clear();
+                tramPatternListBox.Items.Clear();
             }
 
-            if (patternListBox2.InvokeRequired)
+            if (tramPatternListBox.InvokeRequired)
             {
-                patternListBox2.Invoke(new MethodInvoker(delegate { patternListBox2.Items.AddRange(cycleInstructions2.ToArray()); }));
+                tramPatternListBox.Invoke(new MethodInvoker(delegate { tramPatternListBox.Items.AddRange(tramCycleInstructions.ToArray()); }));
             }
             else
             {
-                patternListBox2.Items.AddRange(cycleInstructions2.ToArray());
+                tramPatternListBox.Items.AddRange(tramCycleInstructions.ToArray());
             }
 
             //Preps the next instruction to be processed
-            curCycleEndTime2 = numSeconds + cycleTimings2[instructionCounter2];
-            currentInstruction2 = cycleInstructions2[instructionCounter2];
-            interpretInstruction();
+            tramCycleEndTime = numSeconds + tramCycleTimings[tramInstructionCounter];
+            tramCurrentInstruction = tramCycleInstructions[tramInstructionCounter];
+            interpretTramInstruction();
         }
 
         //Function that interprets each line of instructions in the Operation text files. Covers all combination of instructions that we should use
-        public void interpretInstruction()
+        public void interpretTrainInstruction()
         {
             SystemSounds.Beep.Play();                               //Purely for testing
-            splitInstruction = currentInstruction.Split(null);
-            for (int i = 0; i < splitInstruction.Length; i++)
+            trainSplitInstruction = trainCurrentInstruction.Split(null);
+            for (int i = 0; i < trainSplitInstruction.Length; i++)
             {
-                if (splitInstruction[i] == "-")
+                if (trainSplitInstruction[i] == "-")
                 {
-                    selectTrafficLight = splitInstruction[i + 1];
-                    selectDirection = splitInstruction[i + 2];
-                    selectLightColor = splitInstruction[i + 3];
+                    trainSelectTrafficLight = trainSplitInstruction[i + 1];
+                    trainSelectDirection = trainSplitInstruction[i + 2];
+                    trainSelectLightColor = trainSplitInstruction[i + 3];
 
-                    if (selectTrafficLight == "A" && selectDirection == "forward" && selectLightColor == "green")
+                    if (trainSelectTrafficLight == "A" && trainSelectDirection == "forward" && trainSelectLightColor == "green")
                     {
                         aLight.forwardOn();
                         aLightButton.BackColor = Color.Green;                        
 
                     }
-                    else if (selectTrafficLight == "A" && selectDirection == "right" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "A" && trainSelectDirection == "right" && trainSelectLightColor == "green")
                     {
                         aLight.rightOn();
                         aRightButton.BackColor = Color.Green;
                     }
 
-                    else if (selectTrafficLight == "A" && selectDirection == "forward" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "A" && trainSelectDirection == "forward" && trainSelectLightColor == "red")
                     {
                         aLight.forwardOff();                  
                         aLightButton.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight == "A" && selectDirection == "right" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "A" && trainSelectDirection == "right" && trainSelectLightColor == "red")
                     {
                         aLight.rightOff();
                         aRightButton.BackColor = Color.Red;
 
                     }
-                    else if (selectTrafficLight == "B" && selectDirection == "forward" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "B" && trainSelectDirection == "forward" && trainSelectLightColor == "green")
                     {
                         bLight.forwardOn();
                         bLightButton.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight == "B" && selectDirection == "right" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "B" && trainSelectDirection == "right" && trainSelectLightColor == "green")
                     {
                         bLight.rightOn();
                         
                     }
-                    else if (selectTrafficLight == "B" && selectDirection == "left" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "B" && trainSelectDirection == "left" && trainSelectLightColor == "green")
                     {
                         bLight.leftOn();
                         bLeftButton.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight == "B" && selectDirection == "forward" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "B" && trainSelectDirection == "forward" && trainSelectLightColor == "red")
                     {
                         bLight.forwardOff();
                         bLightButton.BackColor = Color.Red;
 
                     }
-                    else if (selectTrafficLight == "B" && selectDirection == "right" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "B" && trainSelectDirection == "right" && trainSelectLightColor == "red")
                     {
                         bLight.rightOff();
                     }
-                    else if (selectTrafficLight == "B" && selectDirection == "left" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "B" && trainSelectDirection == "left" && trainSelectLightColor == "red")
                     {
                         bLight.leftOff();
                         bLeftButton.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight == "C" && selectDirection == "forward" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "C" && trainSelectDirection == "forward" && trainSelectLightColor == "green")
                     {
                         cLight.forwardOn();
                         cLightButton.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight == "C" && selectDirection == "right" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "C" && trainSelectDirection == "right" && trainSelectLightColor == "green")
                     {
                         cLight.rightOn();
                         cRightButton.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight == "C" && selectDirection == "left" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "C" && trainSelectDirection == "left" && trainSelectLightColor == "green")
                     {
                         cLight.leftOn();
                     }
-                    else if (selectTrafficLight == "C" && selectDirection == "forward" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "C" && trainSelectDirection == "forward" && trainSelectLightColor == "red")
                     {
                         cLight.forwardOff();
                         cLightButton.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight == "C" && selectDirection == "right" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "C" && trainSelectDirection == "right" && trainSelectLightColor == "red")
                     {
                         cLight.rightOff();
                         cRightButton.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight == "C" && selectDirection == "left" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "C" && trainSelectDirection == "left" && trainSelectLightColor == "red")
                     {
                         cLight.leftOff();
                     }
-                    else if (selectTrafficLight == "D" && selectDirection == "forward" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "D" && trainSelectDirection == "forward" && trainSelectLightColor == "green")
                     {
                         dLight.forwardOn();
                         dLightButton.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight == "D" && selectDirection == "right" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "D" && trainSelectDirection == "right" && trainSelectLightColor == "green")
                     {
                         dLight.rightOn();
 
                     }
-                    else if (selectTrafficLight == "D" && selectDirection == "left" && selectLightColor == "green")
+                    else if (trainSelectTrafficLight == "D" && trainSelectDirection == "left" && trainSelectLightColor == "green")
                     {
                         dLight.leftOn();
                         dLeftButton.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight == "D" && selectDirection == "forward" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "D" && trainSelectDirection == "forward" && trainSelectLightColor == "red")
                     {
                         dLight.forwardOff();
                         dLightButton.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight == "D" && selectDirection == "right" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "D" && trainSelectDirection == "right" && trainSelectLightColor == "red")
                     {
                         dLight.rightOff();
                         
                     }
-                    else if (selectTrafficLight == "D" && selectDirection == "left" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "D" && trainSelectDirection == "left" && trainSelectLightColor == "red")
                     {
                         dLight.leftOff();
                         dLeftButton.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight == "*" && selectDirection == "all" && selectLightColor == "red")
+                    else if (trainSelectTrafficLight == "*" && trainSelectDirection == "all" && trainSelectLightColor == "red")
                     {
                         aLight.forwardOff();
                         aLightButton.BackColor = Color.Red;
@@ -439,164 +439,164 @@ namespace DemoSignalSystem
                         
                     }
                 }
-                if (splitInstruction[i] == "%")
+                if (trainSplitInstruction[i] == "%")
                 {
-                    if (splitInstruction[i+1] == "return")
+                    if (trainSplitInstruction[i+1] == "return")
                     {
-                        if (lightCycleComboBox.InvokeRequired)
+                        if (tramLightCycleComboBox.InvokeRequired)
                         {
-                            lightCycleComboBox.Invoke(new MethodInvoker(delegate { selectedCycle = lightCycleComboBox.SelectedItem.ToString(); }));
+                            tramLightCycleComboBox.Invoke(new MethodInvoker(delegate { trainSelectedCycle = tramLightCycleComboBox.SelectedItem.ToString(); }));
                         }
-                        runFile();
+                        runTrainFile();
                     }
                     else
                     {
-                        selectedCycle = splitInstruction[i + 1];
-                        runFile();
+                        trainSelectedCycle = trainSplitInstruction[i + 1];
+                        runTrainFile();
                     }
                     
                 }
             }
             //Preps for the next instruction when its end time occurs
-            instructionCounter++;
-            currentInstruction = cycleInstructions[instructionCounter % (cycleInstructions.Count)];
-            curCycleEndTime = numSeconds + cycleTimings[instructionCounter % (cycleInstructions.Count)];
+            trainInstructionCounter++;
+            trainCurrentInstruction = trainCycleInstructions[trainInstructionCounter % (trainCycleInstructions.Count)];
+            trainCycleEndTime = numSeconds + trainCycleTimings[trainInstructionCounter % (trainCycleInstructions.Count)];
         }
 
-        public void interpretInstruction2()
+        public void interpretTramInstruction()
         {
             SystemSounds.Beep.Play();                               //Purely for testing
-            splitInstruction2 = currentInstruction2.Split(null);
-            for (int i = 0; i < splitInstruction2.Length; i++)
+            tramSplitInstruction = tramCurrentInstruction.Split(null);
+            for (int i = 0; i < tramSplitInstruction.Length; i++)
             {
-                if (splitInstruction2[i] == "-")
+                if (tramSplitInstruction[i] == "-")
                 {
-                    selectTrafficLight2 = splitInstruction2[i + 1];
-                    selectDirection2 = splitInstruction2[i + 2];
-                    selectLightColor2 = splitInstruction2[i + 3];
+                    tramSelectTrafficLight = tramSplitInstruction[i + 1];
+                    tramSelectDirection = tramSplitInstruction[i + 2];
+                    tramSelectLightColor = tramSplitInstruction[i + 3];
 
-                    if (selectTrafficLight2 == "A" && selectDirection2 == "forward" && selectLightColor2 == "green")
+                    if (tramSelectTrafficLight == "A" && tramSelectDirection == "forward" && tramSelectLightColor == "green")
                     {
                         a2Light.forwardOn();
                         aLightButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "A" && selectDirection2 == "right" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "A" && tramSelectDirection == "right" && tramSelectLightColor == "green")
                     {
                         a2Light.rightOn();
                         aRightButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "A" && selectDirection2 == "left" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "A" && tramSelectDirection == "left" && tramSelectLightColor == "green")
                     {
                         a2Light.leftOn();
                         aLeftButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "A" && selectDirection2 == "forward" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "A" && tramSelectDirection == "forward" && tramSelectLightColor == "red")
                     {
                         a2Light.forwardOff();
                         aLightButton2.BackColor = Color.Red;
 
                     }
-                    else if (selectTrafficLight2 == "A" && selectDirection2 == "right" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "A" && tramSelectDirection == "right" && tramSelectLightColor == "red")
                     {
                         a2Light.rightOff();
                         aRightButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "A" && selectDirection2 == "left" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "A" && tramSelectDirection == "left" && tramSelectLightColor == "red")
                     {
                         a2Light.leftOff();
                         aLeftButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "B" && selectDirection2 == "forward" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "B" && tramSelectDirection == "forward" && tramSelectLightColor == "green")
                     {
                         b2Light.forwardOn();
                         bLightButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "B" && selectDirection2 == "right" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "B" && tramSelectDirection == "right" && tramSelectLightColor == "green")
                     {
                         b2Light.rightOn();
                         bRightButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "B" && selectDirection2 == "left" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "B" && tramSelectDirection == "left" && tramSelectLightColor == "green")
                     {
                         b2Light.leftOn();
                         bLeftButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "B" && selectDirection2 == "forward" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "B" && tramSelectDirection == "forward" && tramSelectLightColor == "red")
                     {
                         b2Light.forwardOff();
                         bLightButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "B" && selectDirection2 == "right" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "B" && tramSelectDirection == "right" && tramSelectLightColor == "red")
                     {
                         b2Light.rightOff();
                         bRightButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "B" && selectDirection2 == "left" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "B" && tramSelectDirection == "left" && tramSelectLightColor == "red")
                     {
                         b2Light.leftOff();
                         bLeftButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "C" && selectDirection2 == "forward" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "C" && tramSelectDirection == "forward" && tramSelectLightColor == "green")
                     {
                         c2Light.forwardOn();
                         cLightButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "C" && selectDirection2 == "right" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "C" && tramSelectDirection == "right" && tramSelectLightColor == "green")
                     {
                         c2Light.rightOn();
                         cRightButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "C" && selectDirection2 == "left" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "C" && tramSelectDirection == "left" && tramSelectLightColor == "green")
                     {
                         c2Light.leftOn();
                         cLeftButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "C" && selectDirection2 == "forward" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "C" && tramSelectDirection == "forward" && tramSelectLightColor == "red")
                     {
                         c2Light.forwardOff();
                         cLightButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "C" && selectDirection2 == "right" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "C" && tramSelectDirection == "right" && tramSelectLightColor == "red")
                     {
                         c2Light.rightOff();
                         cRightButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "C" && selectDirection2 == "left" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "C" && tramSelectDirection == "left" && tramSelectLightColor == "red")
                     {
                         c2Light.leftOff();
                         cLeftButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "D" && selectDirection2 == "forward" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "D" && tramSelectDirection == "forward" && tramSelectLightColor == "green")
                     {
                         d2Light.forwardOn();
                         dLightButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "D" && selectDirection2 == "right" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "D" && tramSelectDirection == "right" && tramSelectLightColor == "green")
                     {
                         d2Light.rightOn();
                         dRightButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "D" && selectDirection2 == "left" && selectLightColor2 == "green")
+                    else if (tramSelectTrafficLight == "D" && tramSelectDirection == "left" && tramSelectLightColor == "green")
                     {
                         d2Light.leftOn();
                         dLeftButton2.BackColor = Color.Green;
                     }
-                    else if (selectTrafficLight2 == "D" && selectDirection2 == "forward" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "D" && tramSelectDirection == "forward" && tramSelectLightColor == "red")
                     {
                         d2Light.forwardOff();
                         dLightButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "D" && selectDirection2 == "right" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "D" && tramSelectDirection == "right" && tramSelectLightColor == "red")
                     {
                         d2Light.rightOff();
                         dRightButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "D" && selectDirection2 == "left" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "D" && tramSelectDirection == "left" && tramSelectLightColor == "red")
                     {
                         d2Light.leftOff();
                         dLeftButton2.BackColor = Color.Red;
                     }
-                    else if (selectTrafficLight2 == "*" && selectDirection2 == "all" && selectLightColor2 == "red")
+                    else if (tramSelectTrafficLight == "*" && tramSelectDirection == "all" && tramSelectLightColor == "red")
                     {
                         a2Light.forwardOff();
                         aLightButton2.BackColor = Color.Red;
@@ -625,28 +625,28 @@ namespace DemoSignalSystem
                       
                     }
                 }
-                if (splitInstruction2[i] == "%")
+                if (tramSplitInstruction[i] == "%")
                 {
-                    if (splitInstruction2[i + 1] == "return")
+                    if (tramSplitInstruction[i + 1] == "return")
                     {
-                        if (lightCycleComboBox2.InvokeRequired)
+                        if (tramLightCycleComboBox.InvokeRequired)
                         {
-                            lightCycleComboBox2.Invoke(new MethodInvoker(delegate { selectedCycle2 = lightCycleComboBox2.SelectedItem.ToString(); }));
+                            tramLightCycleComboBox.Invoke(new MethodInvoker(delegate { tramSelectedCycle = tramLightCycleComboBox.SelectedItem.ToString(); }));
                         }
-                        runFile2();
+                        runTramFile();
                     }
                     else
                     {
-                        selectedCycle2 = splitInstruction2[i + 1];
-                        runFile2();
+                        tramSelectedCycle = tramSplitInstruction[i + 1];
+                        runTramFile();
                     }
 
                 }
             }
             //Preps for the next instruction when its end time occurs
-            instructionCounter2++;
-            currentInstruction2 = cycleInstructions2[instructionCounter2 % (cycleInstructions2.Count)];
-            curCycleEndTime2 = numSeconds + cycleTimings2[instructionCounter2 % (cycleInstructions2.Count)];
+            tramInstructionCounter++;
+            tramCurrentInstruction = tramCycleInstructions[tramInstructionCounter % (tramCycleInstructions.Count)];
+            tramCycleEndTime = numSeconds + tramCycleTimings[tramInstructionCounter % (tramCycleInstructions.Count)];
         }
 
         //Drops down so the user can select which light cycle they want so long as they have proper permissions. Basic users only can view the default
@@ -654,18 +654,18 @@ namespace DemoSignalSystem
         {
             if (isEmergencyUser || isAdmin)
             {
-                if (lightCycleComboBox.SelectedItem != null)
+                if (trainLightCycleComboBox.SelectedItem != null)
                 {
-                    selectedCycle = lightCycleComboBox.SelectedItem.ToString();
+                    trainSelectedCycle = trainLightCycleComboBox.SelectedItem.ToString();
                 }
                 if (isRunning)
                 {
-                    runFile();
+                    runTrainFile();
                 }
             }
             else
             {
-                selectedCycle = "DefaultOperation";
+                trainSelectedCycle = "TrainDefaultOperation";
             }
         }
 
@@ -673,32 +673,32 @@ namespace DemoSignalSystem
         {
             if (isEmergencyUser || isAdmin)
             {
-                if (lightCycleComboBox2.SelectedItem != null)
+                if (tramLightCycleComboBox.SelectedItem != null)
                 {
-                    selectedCycle2 = lightCycleComboBox2.SelectedItem.ToString();
+                    tramSelectedCycle = tramLightCycleComboBox.SelectedItem.ToString();
                 }
                 if (isRunning)
                 {
-                    runFile2();
+                    runTramFile();
                 }
             }
             else
             {
-                selectedCycle2 = "DefaultOperation2";
+                tramSelectedCycle = "TramDefaultOperation";
             }
         }
 
         //Controls the playback speed. Cannot go below 1 or above 100.
         private void numericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            multiplier = Convert.ToDouble(numericUpDown.Value);
-            numericUpDown2.Value = numericUpDown.Value;
+            multiplier = Convert.ToDouble(tramNumericUpDown.Value);
+            trainNumericUpDown.Value = tramNumericUpDown.Value;
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-            multiplier = Convert.ToDouble(numericUpDown.Value);
-            numericUpDown.Value = numericUpDown2.Value;
+            multiplier = Convert.ToDouble(tramNumericUpDown.Value);
+            tramNumericUpDown.Value = trainNumericUpDown.Value;
         }
 
         //Pauses or resumes the playback.
@@ -708,7 +708,7 @@ namespace DemoSignalSystem
             {
                 MessageBox.Show("Cannot use 0 or a negative number as a multiplier. Please select a positive value.");
             }
-            else if (selectedCycle == "")
+            else if (trainSelectedCycle == "")
             {
                 MessageBox.Show("Please select a light cycle type.");
             }
@@ -717,15 +717,15 @@ namespace DemoSignalSystem
                 if (!isRunning)
                 {
                     isRunning = true;
-                    startStopButton.Text = "Pause";
-                    startStopButton2.Text = "Pause";
+                    tramStartStopButton.Text = "Pause";
+                    trainStartStopButton.Text = "Pause";
                     startTimer();
                 }
                 else
                 {
                     isRunning = false;
-                    startStopButton.Text = "Resume";
-                    startStopButton2.Text = "Resume";
+                    tramStartStopButton.Text = "Resume";
+                    trainStartStopButton.Text = "Resume";
                     pauseTimer();
                 }
             }
@@ -737,7 +737,7 @@ namespace DemoSignalSystem
             {
                 MessageBox.Show("Cannot use 0 or a negative number as a multiplier. Please select a positive value.");
             }
-            else if (selectedCycle == "")
+            else if (tramSelectedCycle == "")
             {
                 MessageBox.Show("Please select a light cycle type.");
             }
@@ -746,27 +746,34 @@ namespace DemoSignalSystem
                 if (!isRunning)
                 {
                     isRunning = true;
-                    startStopButton.Text = "Pause";
-                    startStopButton2.Text = "Pause";
+                    tramStartStopButton.Text = "Pause";
+                    trainStartStopButton.Text = "Pause";
                     startTimer();
                 }
                 else
                 {
                     isRunning = false;
-                    startStopButton.Text = "Resume";
-                    startStopButton2.Text = "Resume";
+                    tramStartStopButton.Text = "Resume";
+                    trainStartStopButton.Text = "Resume";
                     pauseTimer();
                 }
             }
         }
 
+        //Is actually trainButton. Name change made this name incorrect, but unable to change.
+        private void tramButton_Click(object sender, EventArgs e)
+        {
+            //Button no longer exists.
+        }
+
+        //Is actually tramButton. Name change made this name incorrect, but unable to change.
         //Activates the light cycle for the tram. When the cycle completes, the program will return to the cycle it was on before the button was pressed
         private void tramButton2_Click(object sender, EventArgs e)
         {
-            selectedCycle2 = "TramOperation";
-            runFile2();
+            /*tramSelectedCycle = "TramDefaultOperation";
+            runTramFile();
             lengthOfTram = rand.Next(300, 600);
-            curCycleEndTime2 = curCycleEndTime2 + lengthOfTram;
+            tramCycleEndTime = tramCycleEndTime + lengthOfTram;*/
         }
 
         //Excess buttons that idk what they are. These should be renamed/removed as necessary
@@ -834,11 +841,6 @@ namespace DemoSignalSystem
         private void button2_Click(object sender, EventArgs e)
         {
 
-        }
-        
-        private void tramButton_Click(object sender, EventArgs e)
-        {
-            //Button no longer exists.
-        }
+        }  
     }
 }

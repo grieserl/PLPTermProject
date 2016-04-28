@@ -82,16 +82,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DefaultOperation2.txt">
+    <Content Include="TramDefaultOperation.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DefaultOperation.txt">
+    <Content Include="TrainDefaultOperation.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ListOfCycles2.txt">
+    <Content Include="TramListOfCycles.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ListOfCycles.txt">
+    <Content Include="TrainListOfCycles.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TramEnd.txt">
