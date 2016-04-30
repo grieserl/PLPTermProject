@@ -7,4 +7,6 @@
 60
 - B all red - A right red - C right red - D left red
 60
-- A forward green - C forward green - D right red % return
+- A forward green - C forward green - D right red 
+60
+% return

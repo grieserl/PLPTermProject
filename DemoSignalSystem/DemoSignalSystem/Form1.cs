@@ -27,7 +27,7 @@ namespace DemoSignalSystem
         double trainCycleEndTime = -1;
         double tramCycleEndTime = -1;
         double dbl = 0.0;
-        int lengthOfTram = 0;
+        int lengthOfTrain = 0;
         int trainInstructionCounter = 0;
         int tramInstructionCounter = 0;
         int hours, minutes, seconds = 0;
@@ -443,9 +443,9 @@ namespace DemoSignalSystem
                 {
                     if (trainSplitInstruction[i+1] == "return")
                     {
-                        if (tramLightCycleComboBox.InvokeRequired)
+                        if (trainLightCycleComboBox.InvokeRequired)
                         {
-                            tramLightCycleComboBox.Invoke(new MethodInvoker(delegate { trainSelectedCycle = tramLightCycleComboBox.SelectedItem.ToString(); }));
+                            trainLightCycleComboBox.Invoke(new MethodInvoker(delegate { trainSelectedCycle = trainLightCycleComboBox.SelectedItem.ToString(); }));
                         }
                         runTrainFile();
                     }
@@ -761,19 +761,24 @@ namespace DemoSignalSystem
         }
 
         //Is actually trainButton. Name change made this name incorrect, but unable to change.
-        private void tramButton_Click(object sender, EventArgs e)
+        private void tramButton_Click_1(object sender, EventArgs e)
         {
-            //Button no longer exists.
+            tramSelectedCycle = "TramOperation";
+            runTramFile();
         }
 
-        //Is actually tramButton. Name change made this name incorrect, but unable to change.
+        private void tramButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         //Activates the light cycle for the tram. When the cycle completes, the program will return to the cycle it was on before the button was pressed
         private void tramButton2_Click(object sender, EventArgs e)
         {
-            /*tramSelectedCycle = "TramDefaultOperation";
-            runTramFile();
-            lengthOfTram = rand.Next(300, 600);
-            tramCycleEndTime = tramCycleEndTime + lengthOfTram;*/
+            trainSelectedCycle = "TrainOperation";
+            runTrainFile();
+            lengthOfTrain = rand.Next(300, 600);
+            trainCycleEndTime = trainCycleEndTime + lengthOfTrain;
         }
 
         //Excess buttons that idk what they are. These should be renamed/removed as necessary
@@ -832,6 +837,8 @@ namespace DemoSignalSystem
         {
 
         }
+
+        
 
         private void button12_Click(object sender, EventArgs e)
         {

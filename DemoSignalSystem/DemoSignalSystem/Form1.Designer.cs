@@ -80,13 +80,13 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabLightStatus = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tramButton = new System.Windows.Forms.Button();
             this.tramNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.tramStartStopButton = new System.Windows.Forms.Button();
             this.tramPatternListBox = new System.Windows.Forms.ListBox();
             this.tramLightCycleLabel = new System.Windows.Forms.Label();
             this.tramLightCycleComboBox = new System.Windows.Forms.ComboBox();
             this.tramTimeMultiLabel = new System.Windows.Forms.Label();
-            this.tramButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -654,6 +654,16 @@
             this.tabPage4.Text = "Pattern";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // tramButton
+            // 
+            this.tramButton.Location = new System.Drawing.Point(6, 72);
+            this.tramButton.Name = "tramButton";
+            this.tramButton.Size = new System.Drawing.Size(340, 23);
+            this.tramButton.TabIndex = 7;
+            this.tramButton.Text = "Tram";
+            this.tramButton.UseVisualStyleBackColor = true;
+            this.tramButton.Click += new System.EventHandler(this.tramButton_Click_1);
+            // 
             // tramNumericUpDown
             // 
             this.tramNumericUpDown.Location = new System.Drawing.Point(264, 23);
@@ -720,15 +730,6 @@
             this.tramTimeMultiLabel.Size = new System.Drawing.Size(85, 13);
             this.tramTimeMultiLabel.TabIndex = 1;
             this.tramTimeMultiLabel.Text = "Playback Speed";
-            // 
-            // tramButton
-            // 
-            this.tramButton.Location = new System.Drawing.Point(6, 72);
-            this.tramButton.Name = "tramButton";
-            this.tramButton.Size = new System.Drawing.Size(340, 23);
-            this.tramButton.TabIndex = 7;
-            this.tramButton.Text = "Tram";
-            this.tramButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
