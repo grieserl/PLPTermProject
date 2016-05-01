@@ -1,6 +1,4 @@
-﻿15
+﻿30
 - * all red
 30
-- A right green - B right green - C right green - C left green 
-30
-% TrainEnd
+% return

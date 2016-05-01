@@ -18,9 +18,7 @@ namespace DemoSignalSystem
     public partial class Form1 : Form
     {
         //variable Declaration
-        bool isBasicUser = false;           //May be unnecessary as long as the other 2 options are covered
-        bool isEmergencyUser = false;
-        bool isAdmin = true;
+        string userLevel;
         bool isRunning = true;
         double numSeconds = 0.0;
         double multiplier = 1.0;
@@ -58,12 +56,12 @@ namespace DemoSignalSystem
 
         //Lights for the overview map
         TrafficLight aLight = new TrafficLight(true, false, true, false, false, false, "car");
-        TrafficLight bLight = new TrafficLight(true, false, true, false, true, false, "car");
-        TrafficLight cLight = new TrafficLight(true, false, true, false, true, false, "car");
-        TrafficLight dLight = new TrafficLight(true, false, true, false, true, false, "car");
+        TrafficLight bLight = new TrafficLight(true, false, false, false, true, false, "car");
+        TrafficLight cLight = new TrafficLight(true, false, true, false, false, false, "car");
+        TrafficLight dLight = new TrafficLight(true, false, false, false, true, false, "car");
 
         //Lights for the BD intersection
-        TrafficLight a2Light = new TrafficLight(true, false, true, false, false, false, "car");
+        TrafficLight a2Light = new TrafficLight(true, false, true, false, true, false, "car");
         TrafficLight b2Light = new TrafficLight(true, false, true, false, true, false, "car");
         TrafficLight c2Light = new TrafficLight(true, false, true, false, true, false, "car");
         TrafficLight d2Light = new TrafficLight(true, false, true, false, true, false, "car");
@@ -71,19 +69,22 @@ namespace DemoSignalSystem
         //Initialize the Timer that will keep track of light change timings
         System.Timers.Timer globalTimer = new System.Timers.Timer();
 
-        public Form1()
+        public Form1(string cred)
         {
             InitializeComponent();
             initializeTrainCycleLists();
             initializeTramCycleLists();
             initializeTimer();
+            userLevel = cred;
+            initializePermissions(userLevel);
         }
 
         //Loads all the possible types of selectable cycles into the comboBox based on user permissions. Basic users only get the default operations
         public void initializeTrainCycleLists()
         {
+            trainLightCycleComboBox.Items.Clear();
             trainListOfCycles = File.ReadAllLines("TrainListOfCycles.txt");
-            if (isEmergencyUser || isAdmin)
+            if (userLevel != "user")
             {
                 for (int i = 0; i < trainListOfCycles.Length; i++)
                 {
@@ -100,8 +101,9 @@ namespace DemoSignalSystem
 
         public void initializeTramCycleLists()
         {
+            tramLightCycleComboBox.Items.Clear();
             tramListOfCycles = File.ReadAllLines("TramListOfCycles.txt");
-            if (isEmergencyUser || isAdmin)
+            if (userLevel != "user")
             {
                 for (int i = 0; i < tramListOfCycles.Length; i++)
                 {
@@ -156,6 +158,7 @@ namespace DemoSignalSystem
 
             SetControlText(secondsTextBox2, seconds.ToString());
             SetControlText(secondsTextBox, seconds.ToString());
+            refreshLightImages();
 
             if (numSeconds == trainCycleEndTime && numSeconds == tramCycleEndTime)
             {
@@ -201,39 +204,27 @@ namespace DemoSignalSystem
             trainFileName = trainSelectedCycle + ".txt";
             string[] fileContents = File.ReadAllLines(trainFileName);
 
+           
             //Populates the instruction lists with their respective timings
-            for (int i = 0; i < fileContents.Length; i += 2)
+            for (int i = 0; i < fileContents.Length; i ++)
             {
-                if (Double.TryParse(fileContents[i], out dbl))
+               // textBoxOverpassCycle.Text += fileContents[i];
+               // textBoxOverpassCycle.Text += "\r\n";
+                if (i % 2 == 0)
                 {
-                    trainCycleTimings.Add(dbl);
+                    if (Double.TryParse(fileContents[i], out dbl))
+                    {
+                        trainCycleTimings.Add(dbl);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Fatal error with reading file");
+                        globalTimer.Stop();
+                        globalTimer.Dispose();
+                        Application.Exit();
+                    }
+                    trainCycleInstructions.Add(fileContents[i + 1]);
                 }
-                else
-                {
-                    MessageBox.Show("Fatal error with reading file");
-                    globalTimer.Stop();
-                    globalTimer.Dispose();
-                    Application.Exit();
-                }
-                trainCycleInstructions.Add(fileContents[i + 1]);
-            }
-            //Populates the patternListBoxes. They work in real time to show which instructions/cycles are going on.
-            if (trainPatternListBox.InvokeRequired)
-            {
-                trainPatternListBox.Invoke(new MethodInvoker(delegate { trainPatternListBox.Items.Clear(); }));
-            }
-            else
-            {
-                trainPatternListBox.Items.Clear();
-            }
-
-            if (trainPatternListBox.InvokeRequired)
-            {
-                trainPatternListBox.Invoke(new MethodInvoker(delegate { trainPatternListBox.Items.AddRange(trainCycleInstructions.ToArray()); }));
-            }
-            else
-            {
-                trainPatternListBox.Items.AddRange(trainCycleInstructions.ToArray());
             }
 
             //Preps the next instruction to be processed
@@ -250,39 +241,28 @@ namespace DemoSignalSystem
             tramFileName = tramSelectedCycle + ".txt";
             string[] fileContents2 = File.ReadAllLines(tramFileName);
 
-            //Populates the instruction lists with their respective timings
-            for (int i = 0; i < fileContents2.Length; i += 2)
-            {
-                if (Double.TryParse(fileContents2[i], out dbl))
-                {
-                    tramCycleTimings.Add(dbl);
-                }
-                else
-                {
-                    MessageBox.Show("Fatal error with reading file");
-                    globalTimer.Stop();
-                    globalTimer.Dispose();
-                    Application.Exit();
-                }
-                tramCycleInstructions.Add(fileContents2[i + 1]);
-            }
-            //Populates the patternListBoxes. They work in real time to show which instructions/cycles are going on.
-            if (tramPatternListBox.InvokeRequired)
-            {
-                tramPatternListBox.Invoke(new MethodInvoker(delegate { tramPatternListBox.Items.Clear(); }));
-            }
-            else
-            {
-                tramPatternListBox.Items.Clear();
-            }
 
-            if (tramPatternListBox.InvokeRequired)
+
+            //Populates the instruction lists with their respective timings
+            for (int i = 0; i < fileContents2.Length; i ++)
             {
-                tramPatternListBox.Invoke(new MethodInvoker(delegate { tramPatternListBox.Items.AddRange(tramCycleInstructions.ToArray()); }));
-            }
-            else
-            {
-                tramPatternListBox.Items.AddRange(tramCycleInstructions.ToArray());
+                if (i % 2 == 0)
+                {
+                    if (Double.TryParse(fileContents2[i], out dbl))
+                    {
+                        tramCycleTimings.Add(dbl);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Fatal error with reading file");
+                        globalTimer.Stop();
+                        globalTimer.Dispose();
+                        Application.Exit();
+                    }
+                    tramCycleInstructions.Add(fileContents2[i + 1]);
+                }
+
+
             }
 
             //Preps the next instruction to be processed
@@ -294,7 +274,6 @@ namespace DemoSignalSystem
         //Function that interprets each line of instructions in the Operation text files. Covers all combination of instructions that we should use
         public void interpretTrainInstruction()
         {
-            SystemSounds.Beep.Play();                               //Purely for testing
             trainSplitInstruction = trainCurrentInstruction.Split(null);
             for (int i = 0; i < trainSplitInstruction.Length; i++)
             {
@@ -465,7 +444,6 @@ namespace DemoSignalSystem
 
         public void interpretTramInstruction()
         {
-            SystemSounds.Beep.Play();                               //Purely for testing
             tramSplitInstruction = tramCurrentInstruction.Split(null);
             for (int i = 0; i < tramSplitInstruction.Length; i++)
             {
@@ -652,11 +630,47 @@ namespace DemoSignalSystem
         //Drops down so the user can select which light cycle they want so long as they have proper permissions. Basic users only can view the default
         private void lightCycleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (isEmergencyUser || isAdmin)
+            if (userLevel != "user")
+            {
+                if (tramLightCycleComboBox.SelectedItem != null)
+                {
+                    String line;
+                    textBox4WayCycle.Clear();
+                    tramSelectedCycle = tramLightCycleComboBox.SelectedItem.ToString();
+                    System.IO.StreamReader file = new System.IO.StreamReader(tramSelectedCycle + ".txt");
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        textBox4WayCycle.Text += line + "\r\n";
+                    }
+                    file.Close();
+                    if (isRunning)
+                    {
+                        runTramFile();
+                    }
+
+                }
+                else
+                {
+                    tramSelectedCycle = "TramDefaultOperation";
+                }
+            }
+        }
+
+        private void lightCycleComboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (userLevel != "user")
             {
                 if (trainLightCycleComboBox.SelectedItem != null)
                 {
+                    String line;
+                    textBoxOverpassCycle.Clear();
                     trainSelectedCycle = trainLightCycleComboBox.SelectedItem.ToString();
+                    System.IO.StreamReader file = new System.IO.StreamReader(trainSelectedCycle + ".txt");
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        textBoxOverpassCycle.Text += line + "\r\n";
+                    }
+                    file.Close();
                 }
                 if (isRunning)
                 {
@@ -667,38 +681,6 @@ namespace DemoSignalSystem
             {
                 trainSelectedCycle = "TrainDefaultOperation";
             }
-        }
-
-        private void lightCycleComboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (isEmergencyUser || isAdmin)
-            {
-                if (tramLightCycleComboBox.SelectedItem != null)
-                {
-                    tramSelectedCycle = tramLightCycleComboBox.SelectedItem.ToString();
-                }
-                if (isRunning)
-                {
-                    runTramFile();
-                }
-            }
-            else
-            {
-                tramSelectedCycle = "TramDefaultOperation";
-            }
-        }
-
-        //Controls the playback speed. Cannot go below 1 or above 100.
-        private void numericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            multiplier = Convert.ToDouble(tramNumericUpDown.Value);
-            trainNumericUpDown.Value = tramNumericUpDown.Value;
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-            multiplier = Convert.ToDouble(tramNumericUpDown.Value);
-            tramNumericUpDown.Value = trainNumericUpDown.Value;
         }
 
         //Pauses or resumes the playback.
@@ -777,105 +759,250 @@ namespace DemoSignalSystem
         {
             trainSelectedCycle = "TrainOperation";
             runTrainFile();
-            lengthOfTrain = rand.Next(300, 600);
-            trainCycleEndTime = trainCycleEndTime + lengthOfTrain;
+
         }
 
-        private void showLightStatusOverpass(TrafficLight light)
+        //Called by timer to update light images in light status tab
+        private void refreshLightImages()
+        {
+            pictureBoxOverpassA.Image = showLightStatusOverpass(aLight);
+            pictureBoxOverpassB.Image = showLightStatusOverpass(bLight);
+            pictureBoxOverpassC.Image = showLightStatusOverpass(cLight);
+            pictureBoxOverpassD.Image = showLightStatusOverpass(dLight);
+
+            pictureBox4WayA.Image = showLightStatus4Way(a2Light);
+            pictureBox4WayB.Image = showLightStatus4Way(b2Light);
+            pictureBox4WayC.Image = showLightStatus4Way(c2Light);
+            pictureBox4WayD.Image = showLightStatus4Way(d2Light);
+        }
+
+        //returns the correct image for the status of a traffic light
+        private Image showLightStatusOverpass(TrafficLight light)
         {
             if (light.isRight())
             {
                 if (light.forStatus() && light.rightStatus())
                 {
-
+                    return Image.FromFile("rightForwardRightGreen.jpg");
                 }
 
                 else if (!light.forStatus() && light.rightStatus())
                 {
-
+                    return Image.FromFile("rightGreenRed.jpg");
                 }
 
                 else if (!light.forStatus() && !light.rightStatus())
                 {
-
+                    return Image.FromFile("rightRed.jpg");
                 }
 
                 else if (light.forStatus() && !light.rightStatus())
                 {
-
+                    return Image.FromFile("rightForwardGreen.jpg");
                 }
+                else return Image.FromFile("rightRed.jpg");
             }
 
             else if (light.isLeft())
             {
                 if (light.forStatus() && light.leftStatus())
                 {
-
+                    return Image.FromFile("leftForwardRightGreen.jpg");
                 }
 
                 else if (!light.forStatus() && light.leftStatus())
                 {
-
+                    return Image.FromFile("leftGreenRed.jpg");
                 }
 
                 else if (!light.forStatus() && !light.leftStatus())
                 {
-
+                    return Image.FromFile("leftRed.jpg");
                 }
 
                 else if (light.forStatus() && !light.leftStatus())
                 {
-
+                    return Image.FromFile("leftForwardGreen.jpg");
                 }
+                else return Image.FromFile("leftRed.jpg");
 
             }
-              
-            Image lightimage = Image.FromFile("Traffic Signal-3.jpg");
-           
 
-            pictureBoxOverpass.BackgroundImage = lightimage;
+            else return Image.FromFile("leftRed.jpg");
+
         }
 
-        private void showLightStatus4Way(TrafficLight light)
+        private Image showLightStatus4Way(TrafficLight light)
         {
             if (light.forStatus() && light.leftStatus() && light.rightStatus())
             {
-
+                return Image.FromFile("allForwardAllGreen.jpg");
             }
 
             else if (!light.forStatus() && light.leftStatus() && light.rightStatus())
             {
-
+                return Image.FromFile("allRightLeftGreenRed.jpg");
             }
 
             else if (!light.forStatus() && !light.leftStatus() && light.rightStatus())
             {
-
+                return Image.FromFile("allRightGreenRed.jpg");
             }
 
             else if (!light.forStatus() && !light.leftStatus() && !light.rightStatus())
             {
-
+                return Image.FromFile("allRed.jpg");
             }
 
             else if (light.forStatus() && !light.leftStatus() && !light.rightStatus())
             {
-
+                return Image.FromFile("allForwardGreen.jpg");
             }
 
             else if (light.forStatus() && light.leftStatus() && !light.rightStatus())
             {
-
+                return Image.FromFile("allForwardLeftGreen.jpg");
             }
 
             else if (!light.forStatus() && light.leftStatus() && !light.rightStatus())
             {
-
+                return Image.FromFile("allLeftGreenRed.jpg");
             }
+
+            else if (light.forStatus() && !light.leftStatus() && light.rightStatus())
+            {
+                return Image.FromFile("allForwardRightGreen.jpg");
+            }
+
+            else return Image.FromFile("allRed.jpg");
 
         }
 
+        //Disables controls based on user permission level and sets color scheme
+        private void initializePermissions(String userLevel)
+        {
+            if (userLevel == "user")
+            {
+                labelUserLevel.Text = "Basic User";
+                trainLightCycleComboBox.Enabled = false;
+                tramLightCycleComboBox.Enabled = false;
+                textBox4WayCycle.Enabled = false;
+                textBoxOverpassCycle.Enabled = false;
+                btnUpdateOverpassCycle.Enabled = false;
+                btnUpdate4WayCycle.Enabled = false;
+                btnNew4WayCycle.Enabled = false;
+                btnNewOverpassCycle.Enabled = false;
+            }
+            else if (userLevel == "emergency")
+            {
+                labelUserLevel.Text = "Emergency Services";
+                this.BackColor = Color.Red;
+                textBox4WayCycle.Enabled = false;
+                textBoxOverpassCycle.Enabled = false;
+                btnUpdateOverpassCycle.Enabled = false;
+                btnUpdate4WayCycle.Enabled = false;
+                btnNew4WayCycle.Enabled = false;
+                btnNewOverpassCycle.Enabled = false;
+            }
+            else if(userLevel == "admin")
+            {
+                labelUserLevel.Text = "Administrator";
+                this.BackColor = Color.Yellow;
+            }            
+        }
 
+        //Sets playback speed when scrollbar is moved
+        private void speedBar_Scroll(object sender, EventArgs e)
+        {
+            multiplier = speedBar.Value;
+            speedBar2.Value = speedBar.Value;
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            multiplier = speedBar2.Value;
+            speedBar.Value = speedBar2.Value;
+        }
+
+        private void btnUpdate4WayCycle_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(tramSelectedCycle + ".txt", textBox4WayCycle.Text);
+            runTramFile();
+        }
+
+        private void btnUpdateOverpassCycle_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(trainSelectedCycle + ".txt", textBoxOverpassCycle.Text);
+            runTrainFile();
+
+        }
+
+        //Called when new cycle button is clicked. Opens dialog to name new cycle
+        //Checks if cycle already exists. if it doesn't save the cycle to a new file and add to list of cycles
+        private void btnNew4WayCycle_Click(object sender, EventArgs e)
+        {
+            newCycleBox popUp = new newCycleBox();
+            var result = popUp.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string newCycleName = popUp.newCycleName;
+                String line;
+                bool taken = false;
+                System.IO.StreamReader file = new System.IO.StreamReader("TramListOfCycles.txt");
+
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (newCycleName == line)
+                    {
+                        MessageBox.Show("Cycle name already taken");
+                        taken = true;
+                        break;
+                    }
+                }
+                file.Close();
+                if (!taken)
+                {
+                    File.AppendAllText("TramListOfCycles.txt", "\r\n" + newCycleName);
+                    File.AppendAllText(newCycleName + ".txt", textBox4WayCycle.Text);
+                    initializeTramCycleLists();
+                }                
+            }
+        }
+
+        private void btnNewOverpassCycle_Click(object sender, EventArgs e)
+        {
+            newCycleBox popUp = new newCycleBox();
+            var result = popUp.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string newCycleName = popUp.newCycleName;
+                String line;
+                bool taken = false;
+                System.IO.StreamReader file = new System.IO.StreamReader("TrainListOfCycles.txt");
+
+                while ((line = file.ReadLine()) != null)
+                {
+                    if (newCycleName == line)
+                    {
+                        MessageBox.Show("Cycle name already taken");
+                        taken = true;
+                        break;
+                    }
+                }
+                file.Close();
+                if (!taken)
+                {
+
+                    File.AppendAllText("TrainListOfCycles.txt", "\r\n" + newCycleName);
+                    File.AppendAllText(newCycleName + ".txt", textBoxOverpassCycle.Text);
+                    initializeTrainCycleLists();
+                }
+            }
+        }
+
+        #region unusedfunctions
 
         //Excess buttons that idk what they are. These should be renamed/removed as necessary
         private void label1_Click(object sender, EventArgs e)
@@ -939,6 +1066,11 @@ namespace DemoSignalSystem
            
         }
 
+        private void label1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
         private void button12_Click(object sender, EventArgs e)
         {
 
@@ -947,6 +1079,8 @@ namespace DemoSignalSystem
         private void button2_Click(object sender, EventArgs e)
         {
 
-        }  
+        }
+
+        #endregion
     }
 }
