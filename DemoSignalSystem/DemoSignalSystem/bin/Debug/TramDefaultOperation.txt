@@ -1,4 +1,4 @@
-﻿15
+15
 - * all red - A forward green - A right green - A left green
 15
 - A left red - C right green - C forward green

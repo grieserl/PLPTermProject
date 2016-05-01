@@ -424,6 +424,26 @@ namespace DemoSignalSystem
                     {
                         if (trainLightCycleComboBox.InvokeRequired)
                         {
+                            aLight.forwardOff();
+                            aLightButton.BackColor = Color.Red;
+                            aLight.rightOff();
+                            aRightButton.BackColor = Color.Red;
+                            bLight.forwardOff();
+                            bLightButton.BackColor = Color.Red;
+                            bLight.rightOff();
+                            bLight.leftOff();
+                            bLeftButton.BackColor = Color.Red;
+                            cLight.forwardOff();
+                            cLightButton.BackColor = Color.Red;
+                            cLight.rightOff();
+                            cRightButton.BackColor = Color.Red;
+                            cLight.leftOff();
+                            dLight.forwardOff();
+                            dLightButton.BackColor = Color.Red;
+                            dLight.rightOff();
+                            dLight.leftOff();
+                            dLeftButton.BackColor = Color.Red;
+
                             trainLightCycleComboBox.Invoke(new MethodInvoker(delegate { trainSelectedCycle = trainLightCycleComboBox.SelectedItem.ToString(); }));
                         }
                         runTrainFile();
@@ -609,6 +629,31 @@ namespace DemoSignalSystem
                     {
                         if (tramLightCycleComboBox.InvokeRequired)
                         {
+                            a2Light.forwardOff();
+                            aLightButton2.BackColor = Color.Red;
+                            a2Light.rightOff();
+                            aRightButton2.BackColor = Color.Red;
+                            a2Light.leftOff();
+                            aLeftButton2.BackColor = Color.Red;
+                            b2Light.forwardOff();
+                            bLightButton2.BackColor = Color.Red;
+                            b2Light.rightOff();
+                            bRightButton2.BackColor = Color.Red;
+                            b2Light.leftOff();
+                            bLeftButton2.BackColor = Color.Red;
+                            c2Light.forwardOff();
+                            cLightButton2.BackColor = Color.Red;
+                            c2Light.rightOff();
+                            cRightButton2.BackColor = Color.Red;
+                            c2Light.leftOff();
+                            cLeftButton2.BackColor = Color.Red;
+                            d2Light.forwardOff();
+                            dLightButton2.BackColor = Color.Red;
+                            d2Light.rightOff();
+                            dRightButton2.BackColor = Color.Red;
+                            d2Light.leftOff();
+                            dLeftButton2.BackColor = Color.Red;
+
                             tramLightCycleComboBox.Invoke(new MethodInvoker(delegate { tramSelectedCycle = tramLightCycleComboBox.SelectedItem.ToString(); }));
                         }
                         runTramFile();

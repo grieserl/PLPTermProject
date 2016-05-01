@@ -1,4 +1,4 @@
-120
+30
 - * all red - A forward green - C forward green - C right green - A right green
 15
 - A forward red - C forward red - B forward green - D forward green

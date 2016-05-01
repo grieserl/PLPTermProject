@@ -444,7 +444,7 @@
             // 
             this.pictureBoxOverpassC.Location = new System.Drawing.Point(6, 346);
             this.pictureBoxOverpassC.Name = "pictureBoxOverpassC";
-            this.pictureBoxOverpassC.Size = new System.Drawing.Size(170, 170);
+            this.pictureBoxOverpassC.Size = new System.Drawing.Size(164, 170);
             this.pictureBoxOverpassC.TabIndex = 2;
             this.pictureBoxOverpassC.TabStop = false;
             // 
@@ -452,7 +452,7 @@
             // 
             this.pictureBoxOverpassA.Location = new System.Drawing.Point(6, 135);
             this.pictureBoxOverpassA.Name = "pictureBoxOverpassA";
-            this.pictureBoxOverpassA.Size = new System.Drawing.Size(170, 170);
+            this.pictureBoxOverpassA.Size = new System.Drawing.Size(164, 170);
             this.pictureBoxOverpassA.TabIndex = 0;
             this.pictureBoxOverpassA.TabStop = false;
             // 
@@ -874,15 +874,15 @@
             // 
             this.pictureBox4WayC.Location = new System.Drawing.Point(6, 346);
             this.pictureBox4WayC.Name = "pictureBox4WayC";
-            this.pictureBox4WayC.Size = new System.Drawing.Size(170, 170);
+            this.pictureBox4WayC.Size = new System.Drawing.Size(164, 170);
             this.pictureBox4WayC.TabIndex = 6;
             this.pictureBox4WayC.TabStop = false;
             // 
             // pictureBox4WayA
             // 
-            this.pictureBox4WayA.Location = new System.Drawing.Point(6, 135);
+            this.pictureBox4WayA.Location = new System.Drawing.Point(3, 135);
             this.pictureBox4WayA.Name = "pictureBox4WayA";
-            this.pictureBox4WayA.Size = new System.Drawing.Size(170, 170);
+            this.pictureBox4WayA.Size = new System.Drawing.Size(167, 170);
             this.pictureBox4WayA.TabIndex = 5;
             this.pictureBox4WayA.TabStop = false;
             // 
