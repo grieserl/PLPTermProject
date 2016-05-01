@@ -49,6 +49,7 @@
             this.cLightButton = new System.Windows.Forms.Button();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBoxOverpass = new System.Windows.Forms.PictureBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.trainButton = new System.Windows.Forms.Button();
             this.trainNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -79,6 +80,7 @@
             this.cLightButton2 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabLightStatus = new System.Windows.Forms.TabPage();
+            this.pictureBox4Way = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tramButton = new System.Windows.Forms.Button();
             this.tramNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -92,11 +94,15 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedBar)).BeginInit();
             this.tabControl4.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOverpass)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trainNumericUpDown)).BeginInit();
             this.tabLightPattern.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl2.SuspendLayout();
+            this.tabLightStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4Way)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tramNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -276,6 +282,7 @@
             this.aLightButton.TabIndex = 2;
             this.aLightButton.Text = "A";
             this.aLightButton.UseVisualStyleBackColor = true;
+            this.aLightButton.Click += new System.EventHandler(this.aLightButton_Click);
             // 
             // cLightButton
             // 
@@ -298,6 +305,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.pictureBoxOverpass);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -305,6 +313,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Light Status";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxOverpass
+            // 
+            this.pictureBoxOverpass.Location = new System.Drawing.Point(6, 6);
+            this.pictureBoxOverpass.Name = "pictureBoxOverpass";
+            this.pictureBoxOverpass.Size = new System.Drawing.Size(340, 566);
+            this.pictureBoxOverpass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxOverpass.TabIndex = 0;
+            this.pictureBoxOverpass.TabStop = false;
             // 
             // tabPage5
             // 
@@ -629,6 +646,7 @@
             // 
             // tabLightStatus
             // 
+            this.tabLightStatus.Controls.Add(this.pictureBox4Way);
             this.tabLightStatus.Location = new System.Drawing.Point(4, 22);
             this.tabLightStatus.Name = "tabLightStatus";
             this.tabLightStatus.Padding = new System.Windows.Forms.Padding(3);
@@ -636,6 +654,14 @@
             this.tabLightStatus.TabIndex = 0;
             this.tabLightStatus.Text = "Light Status";
             this.tabLightStatus.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox4Way
+            // 
+            this.pictureBox4Way.Location = new System.Drawing.Point(6, 6);
+            this.pictureBox4Way.Name = "pictureBox4Way";
+            this.pictureBox4Way.Size = new System.Drawing.Size(340, 566);
+            this.pictureBox4Way.TabIndex = 1;
+            this.pictureBox4Way.TabStop = false;
             // 
             // tabPage4
             // 
@@ -746,6 +772,9 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedBar)).EndInit();
             this.tabControl4.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOverpass)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trainNumericUpDown)).EndInit();
@@ -753,6 +782,8 @@
             this.tabLightPattern.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
+            this.tabLightStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4Way)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tramNumericUpDown)).EndInit();
@@ -820,6 +851,8 @@
         private System.Windows.Forms.Button dRightButton2;
         private System.Windows.Forms.Button aRightButton2;
         private System.Windows.Forms.Button tramButton;
+        private System.Windows.Forms.PictureBox pictureBoxOverpass;
+        private System.Windows.Forms.PictureBox pictureBox4Way;
     }
 }
 

@@ -95,7 +95,7 @@ namespace DemoSignalSystem
             {
                 trainLightCycleComboBox.Items.Add(trainListOfCycles[0]);
                 trainLightCycleComboBox.SelectedIndex = 0;
-            }  
+            }
         }
 
         public void initializeTramCycleLists()
@@ -152,7 +152,7 @@ namespace DemoSignalSystem
                 SetControlText(minutesTextBox2, minutes.ToString());
                 SetControlText(minutesTextBox, minutes.ToString());
             }
-            seconds = Convert.ToInt32(Math.Floor(numSeconds%60));   //Section section of timer
+            seconds = Convert.ToInt32(Math.Floor(numSeconds % 60));   //Section section of timer
 
             SetControlText(secondsTextBox2, seconds.ToString());
             SetControlText(secondsTextBox, seconds.ToString());
@@ -190,7 +190,7 @@ namespace DemoSignalSystem
             {
                 Console.WriteLine(ex.ToString());
             }
-        }   
+        }
 
         //Function that runs the operation text files.
         public void runTrainFile()
@@ -307,7 +307,7 @@ namespace DemoSignalSystem
                     if (trainSelectTrafficLight == "A" && trainSelectDirection == "forward" && trainSelectLightColor == "green")
                     {
                         aLight.forwardOn();
-                        aLightButton.BackColor = Color.Green;                        
+                        aLightButton.BackColor = Color.Green;
 
                     }
                     else if (trainSelectTrafficLight == "A" && trainSelectDirection == "right" && trainSelectLightColor == "green")
@@ -318,7 +318,7 @@ namespace DemoSignalSystem
 
                     else if (trainSelectTrafficLight == "A" && trainSelectDirection == "forward" && trainSelectLightColor == "red")
                     {
-                        aLight.forwardOff();                  
+                        aLight.forwardOff();
                         aLightButton.BackColor = Color.Red;
                     }
                     else if (trainSelectTrafficLight == "A" && trainSelectDirection == "right" && trainSelectLightColor == "red")
@@ -335,7 +335,7 @@ namespace DemoSignalSystem
                     else if (trainSelectTrafficLight == "B" && trainSelectDirection == "right" && trainSelectLightColor == "green")
                     {
                         bLight.rightOn();
-                        
+
                     }
                     else if (trainSelectTrafficLight == "B" && trainSelectDirection == "left" && trainSelectLightColor == "green")
                     {
@@ -408,7 +408,7 @@ namespace DemoSignalSystem
                     else if (trainSelectTrafficLight == "D" && trainSelectDirection == "right" && trainSelectLightColor == "red")
                     {
                         dLight.rightOff();
-                        
+
                     }
                     else if (trainSelectTrafficLight == "D" && trainSelectDirection == "left" && trainSelectLightColor == "red")
                     {
@@ -422,7 +422,7 @@ namespace DemoSignalSystem
                         aLight.rightOff();
                         aRightButton.BackColor = Color.Red;
                         bLight.forwardOff();
-                        bLightButton.BackColor = Color.Red; 
+                        bLightButton.BackColor = Color.Red;
                         bLight.rightOff();
                         bLight.leftOff();
                         bLeftButton.BackColor = Color.Red;
@@ -436,12 +436,12 @@ namespace DemoSignalSystem
                         dLight.rightOff();
                         dLight.leftOff();
                         dLeftButton.BackColor = Color.Red;
-                        
+
                     }
                 }
                 if (trainSplitInstruction[i] == "%")
                 {
-                    if (trainSplitInstruction[i+1] == "return")
+                    if (trainSplitInstruction[i + 1] == "return")
                     {
                         if (trainLightCycleComboBox.InvokeRequired)
                         {
@@ -454,7 +454,7 @@ namespace DemoSignalSystem
                         trainSelectedCycle = trainSplitInstruction[i + 1];
                         runTrainFile();
                     }
-                    
+
                 }
             }
             //Preps for the next instruction when its end time occurs
@@ -622,7 +622,7 @@ namespace DemoSignalSystem
                         dRightButton2.BackColor = Color.Red;
                         d2Light.leftOff();
                         dLeftButton2.BackColor = Color.Red;
-                      
+
                     }
                 }
                 if (tramSplitInstruction[i] == "%")
@@ -769,7 +769,7 @@ namespace DemoSignalSystem
 
         private void tramButton_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         //Activates the light cycle for the tram. When the cycle completes, the program will return to the cycle it was on before the button was pressed
@@ -780,6 +780,102 @@ namespace DemoSignalSystem
             lengthOfTrain = rand.Next(300, 600);
             trainCycleEndTime = trainCycleEndTime + lengthOfTrain;
         }
+
+        private void showLightStatusOverpass(TrafficLight light)
+        {
+            if (light.isRight())
+            {
+                if (light.forStatus() && light.rightStatus())
+                {
+
+                }
+
+                else if (!light.forStatus() && light.rightStatus())
+                {
+
+                }
+
+                else if (!light.forStatus() && !light.rightStatus())
+                {
+
+                }
+
+                else if (light.forStatus() && !light.rightStatus())
+                {
+
+                }
+            }
+
+            else if (light.isLeft())
+            {
+                if (light.forStatus() && light.leftStatus())
+                {
+
+                }
+
+                else if (!light.forStatus() && light.leftStatus())
+                {
+
+                }
+
+                else if (!light.forStatus() && !light.leftStatus())
+                {
+
+                }
+
+                else if (light.forStatus() && !light.leftStatus())
+                {
+
+                }
+
+            }
+              
+            Image lightimage = Image.FromFile("Traffic Signal-3.jpg");
+           
+
+            pictureBoxOverpass.BackgroundImage = lightimage;
+        }
+
+        private void showLightStatus4Way(TrafficLight light)
+        {
+            if (light.forStatus() && light.leftStatus() && light.rightStatus())
+            {
+
+            }
+
+            else if (!light.forStatus() && light.leftStatus() && light.rightStatus())
+            {
+
+            }
+
+            else if (!light.forStatus() && !light.leftStatus() && light.rightStatus())
+            {
+
+            }
+
+            else if (!light.forStatus() && !light.leftStatus() && !light.rightStatus())
+            {
+
+            }
+
+            else if (light.forStatus() && !light.leftStatus() && !light.rightStatus())
+            {
+
+            }
+
+            else if (light.forStatus() && light.leftStatus() && !light.rightStatus())
+            {
+
+            }
+
+            else if (!light.forStatus() && light.leftStatus() && !light.rightStatus())
+            {
+
+            }
+
+        }
+
+
 
         //Excess buttons that idk what they are. These should be renamed/removed as necessary
         private void label1_Click(object sender, EventArgs e)
@@ -814,13 +910,13 @@ namespace DemoSignalSystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            aLightButton2.BackColor = Color.Red;
+            
 
         }
 
         private void F_Click(object sender, EventArgs e)
         {
-            aLightButton2.BackColor = Color.Green;
+            
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -838,7 +934,10 @@ namespace DemoSignalSystem
 
         }
 
-        
+        private void aLightButton_Click(object sender, EventArgs e)
+        {
+           
+        }
 
         private void button12_Click(object sender, EventArgs e)
         {

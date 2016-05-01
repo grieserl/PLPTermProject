@@ -63,6 +63,37 @@ namespace DemoSignalSystem
            if (this.hasLeft) this.left = false;
         }
 
+        public bool forStatus()
+        {
+            return forward;
+        }
+
+        public bool rightStatus()
+        {
+            return right;
+        }
+
+        public bool leftStatus()
+        {
+            return left;
+
+        }
+
+        public bool isForward()
+        {
+            return hasForward;
+        }
+
+        public bool isRight()
+        {
+            return hasRight;
+        }
+
+        public bool isLeft()
+        {
+            return hasLeft;
+        }
+
         public void greenPop(string direction)
         {
             for (int i = 0; i < this.vehicleQueue.Count(); i++)
