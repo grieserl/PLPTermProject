@@ -180,11 +180,12 @@
             // 
             // speedBar
             // 
+            this.speedBar.BackColor = System.Drawing.Color.DarkSlateGray;
             this.speedBar.Location = new System.Drawing.Point(1050, 6);
             this.speedBar.Maximum = 20;
             this.speedBar.Minimum = 1;
             this.speedBar.Name = "speedBar";
-            this.speedBar.Size = new System.Drawing.Size(376, 45);
+            this.speedBar.Size = new System.Drawing.Size(376, 42);
             this.speedBar.TabIndex = 11;
             this.speedBar.Value = 1;
             this.speedBar.Scroll += new System.EventHandler(this.speedBar_Scroll);
@@ -408,7 +409,7 @@
             this.trainButton.Name = "trainButton";
             this.trainButton.Size = new System.Drawing.Size(340, 23);
             this.trainButton.TabIndex = 9;
-            this.trainButton.Text = "Train";
+            this.trainButton.Text = "Train or Emergency Vehicle";
             this.trainButton.UseVisualStyleBackColor = true;
             this.trainButton.Click += new System.EventHandler(this.tramButton2_Click);
             // 
@@ -549,11 +550,12 @@
             // 
             // speedBar2
             // 
+            this.speedBar2.BackColor = System.Drawing.Color.DarkSlateGray;
             this.speedBar2.Location = new System.Drawing.Point(1050, 6);
             this.speedBar2.Maximum = 20;
             this.speedBar2.Minimum = 1;
             this.speedBar2.Name = "speedBar2";
-            this.speedBar2.Size = new System.Drawing.Size(376, 45);
+            this.speedBar2.Size = new System.Drawing.Size(376, 42);
             this.speedBar2.TabIndex = 13;
             this.speedBar2.Value = 1;
             this.speedBar2.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -838,7 +840,7 @@
             this.tramButton.Name = "tramButton";
             this.tramButton.Size = new System.Drawing.Size(340, 23);
             this.tramButton.TabIndex = 7;
-            this.tramButton.Text = "Tram";
+            this.tramButton.Text = "Tram or Emergency Vehicle";
             this.tramButton.UseVisualStyleBackColor = true;
             this.tramButton.Click += new System.EventHandler(this.tramButton_Click_1);
             // 
